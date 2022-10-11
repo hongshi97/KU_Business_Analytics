@@ -1,5 +1,7 @@
 # Genetic Algorithm
 
+- 본 Readme 파일은 고려대학교 산업경영공학과 강필성 교수님의 Business Analytics 강의 자료를 기반으로 작성되었습니다.
+
 ![Untitled](https://user-images.githubusercontent.com/56019094/194996274-be67dc17-d500-4eb6-a1a6-aaf87b056af3.png)
 
 ## Heuristic-based Feature Selection 기법의 한계
