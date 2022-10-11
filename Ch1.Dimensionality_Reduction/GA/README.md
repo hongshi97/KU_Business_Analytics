@@ -1,6 +1,6 @@
 # Genetic Algorithm
 
-![Untitled 1](https://user-images.githubusercontent.com/56019094/194995675-d0978f5f-aa85-4663-a2d1-ab6c763207d4.png)
+![Untitled](https://user-images.githubusercontent.com/56019094/194996274-be67dc17-d500-4eb6-a1a6-aaf87b056af3.png)
 
 ## Heuristic-based Feature Selection 기법의 한계
 
@@ -20,11 +20,11 @@
 2. 교배(Crossover): 선택된 부모 세대들의 유전자를 교환하여 새로운 세대를 생성
 3. 돌연변이(Mutation): 낮은 확률로 변이를 발생시켜 Local Optimum에서 탈출할 수 있는 기회 제공
 
-![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/56019094/194996275-9592ba3a-fb79-46ec-a6f1-0f7347e90d43.png)
 
 ⇒ Feature Selection 용도로 Genetic Algoritm은 어떻게 사용될까?
 
-![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/56019094/194996276-9e2577de-37bd-4465-91c6-e235485b7870.png)
 
 ## Step1. Initiation
 
@@ -32,25 +32,27 @@
     - 염색체 인코딩 방식은 Task에 따라 다름
     - Feature Selection을 위한 GA에서는 Binary Encoding 사용
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%203.png)
+        ![Untitled 3](https://user-images.githubusercontent.com/56019094/194996278-901affb5-22aa-4b08-992b-2c5b8e666ce3.png)
+
         
 - 세대 초기화
     - 염색체의 각 유전자(Gene)마다 난수 생성
     - 생성된 난수와 기준값(Cut-off) 비교 → Binary(0/1) 값으로 변환
-    
-    ![Population Size = 8, Cut-off = 0.5인 상황](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%204.png)
-    
-    Population Size = 8, Cut-off = 0.5인 상황
-    
+    - Population Size = 8, Cut-off = 0.5 인 상황
+        ![Untitled 4](https://user-images.githubusercontent.com/56019094/194996249-a38ce10b-49d6-4a06-a837-da3c9ab87823.png)
+
+        
 
 ## Step2. 모델 학습
 
 - 각 염색체에 담긴 정보(해당 변수의 모델링 사용 유무)를 활용하여 염색체 수만큼 모델을 학습
     - e.g. 다중 선형 회귀분석
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%205.png)
+        ![Untitled 5](https://user-images.githubusercontent.com/56019094/194996255-9b6e5d46-1623-4671-b305-2c63b167c658.png)
+
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%206.png)
+        ![Untitled 6](https://user-images.githubusercontent.com/56019094/194996256-c4d29fad-d201-4e50-8bd9-9474e5ab263d.png)
+
         
     
 
@@ -66,7 +68,8 @@
 
 - Step2 예시에서 8개의 염색체에 대한 다중 선형 회귀분석의 Adj $R^2$ 산출
     
-    ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%207.png)
+    ![Untitled 7](https://user-images.githubusercontent.com/56019094/194996257-a3783385-976b-4d70-a42d-4ebcc2e1826e.png)
+
     
     - Rank는 Adj $R^2$ 기준 순위를 나타냄
     - Weight는 개별 염색체의 Adj $R^2$을 전체 염색체들의 Adj $R^2$ 합으로 나눈 값 → 추후 확률적 염색체 선택 기법에서 사용됨
@@ -79,7 +82,8 @@
         - 하위 (100-N)%에 해당하는 염색체는 부모 염색체로 사용될 가능성 없음
         - e.g. 확정적 선택 예시 (50%)
             
-            ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%208.png)
+            ![Untitled 8](https://user-images.githubusercontent.com/56019094/194996259-e2b7fada-1db6-4935-b588-f0b31401748c.png)
+
             
             → 오직 1번, 2번, 4번, 8번 염색체만 다음 세대를 생성하는 부모 염색체의 역할을 수행할 수 있음
             
@@ -88,11 +92,13 @@
         - 모든 염색체가 부모 염색체로 선택될 가능성이 있으나 적합도 함수가 낮을수록 선택 가능성도 낮아짐
         - e.g. 1
             
-            ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%209.png)
+            ![Untitled 9](https://user-images.githubusercontent.com/56019094/194996262-582cd02b-50dc-4f3b-9168-f1d1994c6303.png)
+
             
         - e.g. 2
             
-            ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%2010.png)
+            ![Untitled 10](https://user-images.githubusercontent.com/56019094/194996264-4b44bd54-e9ca-4062-aaec-e130b7f8b89a.png)
+
             
 
 ## Step5. 교배 및 돌연변이
@@ -102,17 +108,20 @@
     - 교배 지점(Crossover Point)는 최소 1개부터 최대 n(전체 유전자(변수) 수)까지 가능
     - 교배 지점 1개 e.g.
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%2011.png)
+        ![Untitled 11](https://user-images.githubusercontent.com/56019094/194996266-dfcdbd96-7a3f-4ad2-a6d2-4ef350578930.png)
+
         
     
     - 교배 지점 2개 e.g.
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%2012.png)
+        ![Untitled 12](https://user-images.githubusercontent.com/56019094/194996267-552b19f3-bac4-4e4a-97b5-572b9203caa6.png)
+
         
     
     - 교배 지점 10개 e.g.
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%2013.png)
+        ![Untitled 13](https://user-images.githubusercontent.com/56019094/194996269-9fe547ee-5ab2-41a4-a98e-d1f6473f5f05.png)
+
         
 
 - 돌연변이 (Mutation)
@@ -123,7 +132,8 @@
         
         → 주로 0.01 이하 값을 사용
         
-        ![Untitled](Genetic%20Algorithm%2000116ebd6d6145e8a5840389f047caaa/Untitled%2014.png)
+        ![Untitled 14](https://user-images.githubusercontent.com/56019094/194996272-06a0285a-ccaa-4033-ac1d-7dd98f383107.png)
+
         
 
 ## Step6. 최적 변수 조합 선정
