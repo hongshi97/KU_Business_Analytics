@@ -1,6 +1,6 @@
 # Genetic Algorithm
 
-![Untitled 1](https://user-images.githubusercontent.com/56019094/194995675-d0978f5f-aa85-4663-a2d1-ab6c763207d4.png)
+<img src = ![Untitled 1](https://user-images.githubusercontent.com/56019094/194995675-d0978f5f-aa85-4663-a2d1-ab6c763207d4.png, width = 500)
 
 ## Heuristic-based Feature Selection 기법의 한계
 
