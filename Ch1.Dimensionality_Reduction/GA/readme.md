@@ -1,1 +1,2 @@
 
+https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2d4f52b4-2cd2-41f5-8b35-e6b3a10aab26/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20221011%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20221011T025359Z&X-Amz-Expires=86400&X-Amz-Signature=088390dcac2b3afe1aa881e0f436337bf50c13c0ac30d03c049b96a8ac40993d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject
