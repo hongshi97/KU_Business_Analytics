@@ -2,13 +2,13 @@
 
 **ISO**metric **MAP**ping
 
-![Untitled](ISOMAP%2019a039e067d34291a985eb108b6f2cea/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/56019094/195226123-5afd2c28-a5a3-4da4-a421-d1aa7ef5c9ee.png)
 
 - **ISOMAP**은 PCA(주성분 분석)와 MDS(다차원 척도법)를 결합해 만들어낸 **Non-Linear 차원 축소 방법**임
 - MDS가 Object 간의 Distance Information을 최대한 보존하는 것을 목적으로 만들었다면, ISOMAP은 **Manifold 상에서 Object 간의 Distance**를 이용해 고차원의 데이터를 저차원으로 축소시킴
 - Swiss Roll Dataset
     
-    ![이미지 출처: 고려대학교 산업경영공학과 대학원 강필성 교수님 Business-Analytics 강의 01_4_Dimensionality Reduction_ISOMAP, LLE, tSNE 강의 자료](ISOMAP%2019a039e067d34291a985eb108b6f2cea/Untitled%201.png)
+    ![Untitled 1](https://user-images.githubusercontent.com/56019094/195226126-2068d220-d429-4fd6-9361-a4a881677f6a.png)
     
     이미지 출처: 고려대학교 산업경영공학과 대학원 강필성 교수님 Business-Analytics 강의 01_4_Dimensionality Reduction_ISOMAP, LLE, tSNE 강의 자료
     
@@ -35,13 +35,15 @@
         
         만약 데이터 포인트 두 개를 i,j라고 할 때, i가 j의 $k$-Nearest Neighbor라면 i와 j를 연결
         
-        ![이미지 출처: [https://jeheonpark93.medium.com/vc-isomap-manifolds-learning-965e758316eb](https://jeheonpark93.medium.com/vc-isomap-manifolds-learning-965e758316eb)](ISOMAP%2019a039e067d34291a985eb108b6f2cea/Untitled%202.png)
+        ![Untitled 2](https://user-images.githubusercontent.com/56019094/195226127-460e873e-4bae-4ea2-95f8-0e314bb9e844.png)
+
         
         이미지 출처: [https://jeheonpark93.medium.com/vc-isomap-manifolds-learning-965e758316eb](https://jeheonpark93.medium.com/vc-isomap-manifolds-learning-965e758316eb)
         
 - Neighborhood Graph 생성 결과 예시
     
-    ![이미지 출처: [https://woosikyang.github.io/first-post.html](https://woosikyang.github.io/first-post.html)](ISOMAP%2019a039e067d34291a985eb108b6f2cea/Untitled%203.png)
+    ![Untitled 3](https://user-images.githubusercontent.com/56019094/195226130-2c72823d-87ed-4196-9b8a-a600b575bb9b.png)
+
     
     이미지 출처: [https://woosikyang.github.io/first-post.html](https://woosikyang.github.io/first-post.html)
     
@@ -60,6 +62,7 @@
 - 빨간 선은 Step2까지의 과정을 통해 얻은 두 Data Point 간의 Shortest Path
 - 파란 직선은 2차원 Embedding 공간에서의 두 Data Point 간의 Shortest Path를 빨간 선보다 더 단순하고 깔끔하게 근사(approximation)함
 
-![이미지 출처: 고려대학교 산업경영공학과 대학원 강필성 교수님 Business-Analytics 강의 01_4_Dimensionality Reduction_ISOMAP, LLE, tSNE 강의 자료](ISOMAP%2019a039e067d34291a985eb108b6f2cea/Untitled%204.png)
+![Untitled 4](https://user-images.githubusercontent.com/56019094/195226132-59dec371-1f39-4dd7-8cd8-51f1c538ab68.png)
+
 
 이미지 출처: 고려대학교 산업경영공학과 대학원 강필성 교수님 Business-Analytics 강의 01_4_Dimensionality Reduction_ISOMAP, LLE, tSNE 강의 자료
