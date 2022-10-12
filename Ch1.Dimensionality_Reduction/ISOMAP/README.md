@@ -53,7 +53,7 @@
 - Step 2-1. 두 Data Point i, j의 연결 유무에 따라 $d_G(i,j)$ 다르게 초기화 
                ($d_G(i,j)$는 Data Point $i$와 $j$의 최단 거리를 의미)
     - 두 Data Point i, j이 서로 연결되어 있는 경우 → $d_G(i,j) = d_X(i,j)$ 으로 초기화
-    - 두 Data Point i,j이 서로 연결되어 있지 않은 경우 → $d_G(i,j) = \infin$ 으로 초기화
+    - 두 Data Point i,j이 서로 연결되어 있지 않은 경우 → $d_G(i,j) = \infinity$ 으로 초기화
 - Step 2-2.  $k = 1, 2, ..., N$에 대하여 $d_G(i,j) = min(d_G(i,j), d_g(i,k) + d_G(k,i))$로 값 대체
 
 ### Step3. MDS를 활용해 d-dimensional (저차원) embedding 생성
