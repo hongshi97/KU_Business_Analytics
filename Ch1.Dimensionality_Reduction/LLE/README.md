@@ -79,32 +79,32 @@ Neighbor들을 이용해 **선형 결합**으로 Data Point를 나타내기에 �
 
 ---
 
-$min$ $\Phi{(\bold{W})} = \sum_i|\bold{y}_i - \sum_{j=1}\bold{W}_{ij}\bold{y}_j|^2$  ⇒  $min$ $\Phi(\bold{W}) = \sum_{i,j}\bold{M}_{ij}(\bold{y}_i\centerdot\bold{y}_j)$
+$$min$ $\Phi{(\bold{W})} = \sum_i|\bold{y}_i - \sum_{j=1}\bold{W}_{ij}\bold{y}_j|^2$  ⇒  $min$ $\Phi(\bold{W}) = \sum_{i,j}\bold{M}_{ij}(\bold{y}_i\centerdot\bold{y}_j)$
 
-where, $\bold{M}_{ij} = \delta_{ij} - \bold{W}_{ij} - \bold{W}_{ji} + \sum_k\bold{W}_{ki}\bold{W}_{kj}, \delta_{ij} = 1$ if $i = j$, 0 otherwise
+where, $$\bold{M}_{ij} = \delta_{ij} - \bold{W}_{ij} - \bold{W}_{ji} + \sum_k\bold{W}_{ki}\bold{W}_{kj}, \delta_{ij} = 1$ if $i = j$, 0 otherwise
 
-s.t. $\sum_i\bold{y}_i = 0$, ${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$
+s.t. $$\sum_i\bold{y}_i = 0$, ${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$
 
 ---
 
 > 위 제약 조건의 의미
 > 
-> - $\sum_i\bold{y}_i = 0$    → Embedding된 저차원 공간 상에 각 변수의 평균 = 0
-> - ${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$    →  Embedding된 저차원 공간 상에서의 각 변수들 서로 직교함
+> - $$\sum_i\bold{y}_i = 0$    → Embedding된 저차원 공간 상에 각 변수의 평균 = 0
+> - $${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$    →  Embedding된 저차원 공간 상에서의 각 변수들 서로 직교함
 
 ---
 
-$min$ $\Phi{(\bold{W})} = \sum_i|\bold{y}_i - \sum_{j=1}\bold{W}_{ij}\bold{y}_j|^2$
+$$min$ $\Phi{(\bold{W})} = \sum_i|\bold{y}_i - \sum_{j=1}\bold{W}_{ij}\bold{y}_j|^2$
 
-                      $= [(\bold{I} - \bold{W})\bold{y}]^T (\bold{I} - \bold{W})\bold{y}$
+                      $$= [(\bold{I} - \bold{W})\bold{y}]^T (\bold{I} - \bold{W})\bold{y}$
 
-                      $= \bold{y}^T(\bold{I}-\bold{W})^T(\bold{I}-\bold{W})\bold{y}$
+                      $$= \bold{y}^T(\bold{I}-\bold{W})^T(\bold{I}-\bold{W})\bold{y}$
 
-                      $= \bold{y}^T\bold{M}\bold{y}$
+                      $$= \bold{y}^T\bold{M}\bold{y}$
 
-⇒ $min$ $\bold{y}^T\bold{M}\bold{y}$  → Eq(2)
+⇒ $$min$ $$\bold{y}^T\bold{M}\bold{y}$  → Eq(2)
 
-    s.t. $\sum_i\bold{y}_i = 0$, ${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$
+    s.t. $$\sum_i\bold{y}_i = 0$, ${1\over{n}}\sum_i\bold{y}\bold{y}^T = \bold{I}$
 
 - 식 2를 라그랑지안 함수 $L$로 나타낸 후, 해당 함수 $L$을 $\bold{Y}$에 대해 편미분 즉, $\partial{L} \over \partial{Y}$ = 0을 하면 $\bold{y}$의 Eigen Vector 및 Eigen Value를 구할 수 있음
 
