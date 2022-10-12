@@ -37,9 +37,9 @@
 
 </aside>
 
-( $\bold{x}$: 고차원 공간에서의 Data Point(객체), $\bold{y}$: 저차원 공간에서의 Data Point(객체))
+( ${x}$: 고차원 공간에서의 Data Point(객체), ${y}$: 저차원 공간에서의 Data Point(객체))
 
-- $p_{j|i}$의 분자에서 $\bold{x}_i$와 $\bold{x}_j$가 가까울수록 $||\bold{x}_i - \bold{x}_j||^2$ 값은 작아짐
+- $p_{j|i}$의 분자에서 ${x}_i$와 ${x}_j$가 가까울수록 $||{x}_i - {x}_j||^2$ 값은 작아짐
     
     → $p_{j|i}$의 분자 값 커짐 → $p_{j|i}$ 값 커짐
     
@@ -59,12 +59,6 @@
     
     → KL (Kullback-Leibler) Divergence Cost Function 사용
     
-    <aside>
-    💡 KL Divergence: 두 확률 분포 사이의 차이를 계산해주는 지표
-    - KL Divergence는 [0, $\infin$] 범위의 값을 가짐
-    - 두 확률 분포가 완벽하게 일치하면 KL Divergence 값은 0
-    - 두 확률 분포의 차이가 클수록 KL Divergence 값은 커짐
-    
     </aside>
     
     - $Cost = \sum_i KL(P_i||Q_i) = \sum_i \sum_jp_{j|i}log{p_{j|i}\over q_{j|i}}$
@@ -78,8 +72,8 @@
 
 ![Untitled](t-SNE%20a078864ecbd3496189d80dc62a9dc300/Untitled%202.png)
 
-→ $\bold{x}$는 원래 차원에서의 좌표 (알고 있는 값)  $\bold{y}$는 축소된 차원에서의 좌표
-→ $\bold{y}$: 알고자 하는 값(미지수)
+→ ${x}$는 원래 차원에서의 좌표 (알고 있는 값)  ${y}$는 축소된 차원에서의 좌표
+→ ${y}$: 알고자 하는 값(미지수)
 
 ⇒ 아래 식을 통해 Gradient Descent 방법으로 학습
 
