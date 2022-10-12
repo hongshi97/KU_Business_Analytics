@@ -33,13 +33,13 @@ Multidimensional Scaling
         $d_{rs}^2 = x_r^Tx_r + x_s^Tx_s - 2x_r^Tx_s$
         
 
-![Untitled](MDS%203dbe7f1871e4453085e44ee85efa4495/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/56019094/195246883-f16ab02c-9197-4de8-90d8-054bad0da310.png)
 
-![Untitled](MDS%203dbe7f1871e4453085e44ee85efa4495/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/56019094/195246889-0e884820-d340-462f-a2d6-be9825cfc1a4.png)
 
-![Untitled](MDS%203dbe7f1871e4453085e44ee85efa4495/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/56019094/195246890-f89ef877-a54b-4915-b012-6546d0dda98c.png)
 
-![Untitled](MDS%203dbe7f1871e4453085e44ee85efa4495/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/56019094/195246893-64317362-13bb-469b-8472-3661bdd85f70.png)
 
 - 행렬 $B$로부터 $X$의 좌표를 얻음 ($X$: n by p, p < n)
     - $B = XX^T$      $rank(B) = rank(XX^T)= rank(X) = p$
