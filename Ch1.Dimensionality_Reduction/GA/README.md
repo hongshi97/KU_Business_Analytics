@@ -3,7 +3,7 @@
 - 본 Readme 파일은 고려대학교 산업경영공학과 강필성 교수님의 Business Analytics 강의 자료를 기반으로 작성되었습니다.
 ---
 - GA.ipynb: 유전 알고리즘 Procedure Step 별 설명 및 구현
-- GA_class.ipynb: GA.ipynb 내 함수 이용 GA Class 
+- GA_class.ipynb: GA.ipynb 내 함수 이용 GA Class 정의
 
 ![Untitled](https://user-images.githubusercontent.com/56019094/194996274-be67dc17-d500-4eb6-a1a6-aaf87b056af3.png)
 
