@@ -1,44 +1,64 @@
 # SVM
 
-[TOC]
+## 목차
+
+1. [이론](#이론)
+   1. [Margin](#Margin)
+   2. [Optimization](#Optimization-문제)
+   3. [Soft Margin SVM](#Soft-Margin-SVM)
+   4. [Nonlinear&Kernel](#Nonlinear-&-Kernel)
+2. [코딩 실습](#코딩-실습)
+   1. [실험 주제](#실험-주제)
+   2. [Main Experiment - Support Vector Classifier](#Main-Experiment---Support-Vector-Classifier)
+      1. [SVC 결과 해석](#SVC-결과-해석)
+   3. [Additional Experiment - Support Vector Regressor](#Additional-Experiment---Support-Vector-Regressor)
+      1. [SVR 결과 해석](#SVR-결과-해석)
+
+---
+># **이론**
 
 **S**uppor **V**ector **M**achine
 
-> Keywords: Margin, Hyperplane, Support Vector
-> 
+Keywords: Margin, Hyperplane, Support Vector
+ 
 
 📢 요약: Support Vector Machine은 Vector Space 상에서 Vector들을 가장 잘 분류하는 Hyperplane을 수립하는 것을 목표로 한다.
 
 - Background
     - Hyperplane(초평면): a subspace of one dimension less than its ambient space
       
-        ![이미지 출처: Support Vector Machines without tears](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled.png)
+      
+    <p align="center">
+    <image src=https://user-images.githubusercontent.com/56019094/199520467-88e4f48d-11e1-42a2-868b-0ca4ddcf7b56.png
+    height="300"/>  
+    </p>
+    이미지 출처: Support Vector Machines without tears
         
-        이미지 출처: Support Vector Machines without tears
-        
-        - n차원의 공간에서 Hyperplane은 n-1차원의 subspace를 의미
-            - 2차원의 경우 Hyperplane은 1차원(직선)
-            - 3차원의 경우 Hyperplane은 2차원(평면)
-        
+    - n차원의 공간에서 Hyperplane은 n-1차원의 subspace를 의미
+        - 2차원의 경우 Hyperplane은 1차원(직선)
+        - 3차원의 경우 Hyperplane은 2차원(평면)  
         ⇒ SVM에서 Hyperplane은 어떤 Vector Space 상에 존재하는 Vector들을 분류하는 Decision Boundary(결정 경계)에 해당
         
 
-# Margin
+>## Margin
 
-### “가장 잘 분류하는”의 기준이 무엇인가?
+>>### “가장 잘 분류하는”의 기준이 무엇인가?
 
 - SVM은 Vector Space 상에 있는 Vector 형태로 표현된 각 Data Point들을 가장 잘 분류하는 Hyperplane(초평면)을 수립하는 것을 목표로 함
   
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%201.png)
+
+<p align = 'center'>
+<image src=https://user-images.githubusercontent.com/56019094/199521480-96c01d5c-4bc4-4f18-8273-b4814f0320b6.png height = '300'></p>
     
 
-### Margin을 최대화하는 Hyperplane을 찾자
+>>### Margin을 최대화하는 Hyperplane을 찾자
 
 - Margin이란?
   
     : Hyperplane으로부터 등 간격으로 양쪽으로 확장시켰을 때 Hyperplane과 가장 가까운 객체(Support Vector)와의 거리
     
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%202.png)
+    <p align = 'center'>
+    <image src=https://user-images.githubusercontent.com/56019094/199521778-96a75042-461b-4104-98e3-325bd3c33065.png height = '300'></p>
     
     - 위의 Hyperplane 네 개 모두 다 데이터들을 잘 분류하는데 Margin이 크면 뭐가 좋을까?
       
@@ -72,9 +92,10 @@
                 → $\sqrt{{h{(ln{2n\over h}}+1)-ln({\delta \over 4}) }\over{n}}$ (Capacity Term) 감소 → $R[f]$ (구조적 위험) 감소
                 
 
-### Margin을 어떻게 계산할 것인가?
+>>### Margin을 어떻게 계산할 것인가?
 
-![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%203.png)
+<p align = 'center'>
+<image src=https://user-images.githubusercontent.com/56019094/199521970-0e80400c-3430-4f84-9e91-2f041f01882a.png height = '300'> </p>
 
 Hyperplane을 $\boldsymbol{w}^T\boldsymbol{x} + b$
 
@@ -118,11 +139,11 @@ $= {2 \over \sqrt{\boldsymbol{w}^T\boldsymbol{w}}}$
 
 $= {2 \over ||w||_2}$
 
-# Optimization 문제
+>## Optimization 문제
 
 **Remind!** SVM의 목적은 **Margin**을 **최대**로 하는 Hyperplane을 찾는 것
 
-### 목적 함수 및 제약 조건
+>>### 목적 함수 및 제약 조건
 
 - Margin을 최대화:  $max$  ${2 \over ||w||^2}$    --역수->     $min$   ${1 \over 2}||w||^2$
   
@@ -130,7 +151,8 @@ $= {2 \over ||w||_2}$
     
     $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
     
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%204.png)
+    <p align = 'center'>
+    <img src = https://user-images.githubusercontent.com/56019094/199522537-dcbdf18f-d3d0-4e16-8130-23c6f1a73f14.png height = '300'></p>
     
     - Let $\boldsymbol{x}_i$ = 파란색 Data Object, $\boldsymbol{x}_j$ = 빨간색 Data Object
         - $\boldsymbol{w}\boldsymbol{x}_i \ge 1$      $(y_i = +1)$  →   $y_i(\boldsymbol{w} \cdot \boldsymbol{x}_i + b) \ge +1$
@@ -141,7 +163,7 @@ $= {2 \over ||w||_2}$
         
     
 
-### 라그랑지안 문제로 변환
+>>### 라그랑지안 문제로 변환
 
 - 기존 목적 함수 및 제약 조건
   
@@ -153,10 +175,10 @@ $= {2 \over ||w||_2}$
     
 - 라그랑지안 문제
   
-    $${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$$
+    ${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
     $s.t.$   $\alpha_i \ge 0$
 
-### 쌍대(Dual) 문제로 변환
+>>### 쌍대(Dual) 문제로 변환
 
 - KKT 조건
   
@@ -166,12 +188,12 @@ $= {2 \over ||w||_2}$
     
 - 원문제
   
-    $${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$$
+    ${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
     $s.t.$   $\alpha_i \ge 0$ 
 
 - 쌍대(Dual) 문제
   
-    $$\max \quad { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$$
+    $\max \quad { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$
     
     $s.t.$    $\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ y }_{ i } } =0, \quad
     { \alpha  }_{ i }\ge 0$
@@ -190,12 +212,11 @@ $= {2 \over ||w||_2}$
             $\boldsymbol{x}_i$가 Plus-plane과 Minus-plane 상에 위치한다는 것을 의미
             → 이 $\boldsymbol{x}_i$ ( = Support Vector)에 대해서만 $\alpha_i$는 0보다 큰 값을 가지게 됨.
             
-            ![이미지 출처: [https://techblog-history-younghunjo1.tistory.com/m/78](https://techblog-history-younghunjo1.tistory.com/m/78)](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%205.png)
-            
-            이미지 출처: [https://techblog-history-younghunjo1.tistory.com/m/78](https://techblog-history-younghunjo1.tistory.com/m/78)
+            <p align = 'left'><img src = https://user-images.githubusercontent.com/56019094/199523250-335b3594-beef-4cba-8598-fe7931fdf682.png height = '300'></p>
+            이미지 출처: [https://techblog-history-younghunjo1.tistory.com/m/78]
             
 
-### 최종 Hyperplane 구하기
+>>### 최종 Hyperplane 구하기
 
 - SVM에서 찾고자 하는 것은 Margin이 최대화된 Hyperplane $\boldsymbol{w}^T\boldsymbol{x} + b$
   
@@ -209,18 +230,18 @@ $= {2 \over ||w||_2}$
     - $\boldsymbol{w}$를 구한 뒤, $(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$을 통해 $b$를 구할 수 있음
 - 새로운 Instance$(\boldsymbol{x}_{new}$가 들어오면) $y_i(\boldsymbol{w}^T\boldsymbol{x}_{new} + b) -1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
 
-# Soft Margin SVM
+>## Soft Margin SVM
 
 - 이전까지 설명한 SVM은 Hyperplane과 Support Vectors 사이에 Instance가 존재하지 않도록 하는 Hard Margin SVM이었음
 - Soft Margin SVM은 Hyperplane과 Support Vectors 사이에 어느정도 Instance가 존재하는 것을 허용
 
-### 목적 함수 및 제약 조건
+>>### 목적 함수 및 제약 조건
 
 $min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i$
 
 $s.t. \quad y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1-\xi_i, \quad \xi_i \ge0, \forall i$
 
-![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%206.png)
+<p align = 'left'><img src = https://user-images.githubusercontent.com/56019094/199524039-91704ab9-95e5-40be-a78e-83a4f7151e5a.png height = '250'></p>
 
 $notation$
 
@@ -230,17 +251,17 @@ $\xi$: Penalty
 
 ⇒ 미지수: $\boldsymbol{w}, b, \xi$
 
-### 라그랑지안 문제로 변환
+>>### 라그랑지안 문제로 변환
 
-$$ min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
+$ min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 $s.t.\quad\alpha_i \ge 0$
 
-### 쌍대(Dual) 문제로 변환
+>>### 쌍대(Dual) 문제로 변환
 
 - 원문제
 
-$$\min \quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
+$\min \quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 
 $s.t.\quad\alpha_i \ge 0$
@@ -273,7 +294,7 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
 
 
-### Plus) $\alpha_i$ 값에 따른 Instance 위치
+>>### Plus) $\alpha_i$ 값에 따른 Instance 위치
 
 KKT 조건으로부터 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1+\xi_i) = 0$ 수식을 얻을 수 있었음
 - Support Vector에 대해서만 $\alpha_i \ne 0$이 성립
@@ -295,12 +316,12 @@ KKT 조건으로부터 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1+\xi_i
   
     ⇒ Margin 밖에 위치하는 Support Vector
   
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%207.png)
+    <p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199524486-539f4d6a-37fe-4882-bbf7-97188c7d06d2.png height = '300'></p>
   
 
 Hyperparameter C(오분류 비용)에 따른 분류 경계면 변화
 
-![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%208.png)
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199524779-72b14258-12fb-4d6b-a601-8bf87d5f069d.png height = '300'></p>
 
 $$
 min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i
@@ -314,22 +335,22 @@ Small C: 목적함수에서 Penalty의 영향력이 작아짐
       → Penalty의 영향력이 적으므로 Margin을 조금 더 넓게 잡을 수 있음  
       → $\alpha_i = C$인 Support Vector의 수가 상대적으로 많음  
 
-# Nonlinear & Kernel
+>## Nonlinear & Kernel
 
 - Linear Model의 한계: 분류 경계면이 비선형일 경우 잘 찾아내지 함
   
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%209.png)
+    <p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199524989-6ae5a362-d1ba-4a01-b749-1e0be33d5296.png height = '300'></p>
     
 
-<aside>
-🧐 선형 분류가 가능한 고차원으로 데이터를 Mapping해서 모델을 학습하자!
-![이미지 출처: [https://towardsdatascience.com/support-vector-machine-formulation-and-derivation-b146ce89f28](https://towardsdatascience.com/support-vector-machine-formulation-and-derivation-b146ce89f28)](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%2010.png)
 
-이미지 출처: [https://towardsdatascience.com/support-vector-machine-formulation-and-derivation-b146ce89f28](https://towardsdatascience.com/support-vector-machine-formulation-and-derivation-b146ce89f28)
+🧐 선형 분류가 가능한 고차원으로 데이터를 Mapping해서 모델을 학습하자!
+
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199525195-e5ee6860-9c28-48cf-a3fd-f86223d3b91c.png height = '300'></p>
+이미지 출처: [https://towardsdatascience.com/support-vector-machine-formulation-and-derivation-b146ce89f28]
 
 ⇒ 고차원 Mapping을 통해 Nonlinear(비선형) 분류 경계면 생성
 
-### 고차원에서의 목적 함수 및 제약 조건
+>>### 고차원에서의 목적 함수 및 제약 조건
 
 $min\quad{1 \over 2}||\boldsymbol{w}||^2 + C\sum_{i=1}^N\xi_i$
 
@@ -338,7 +359,7 @@ $s.t\quad y_i(\boldsymbol{w}^T\Phi(\boldsymbol{x}_i) + b) \ge 1-\xi_i,\quad \xi_
 
 ⇒ **라그랑지안 문제로 변환**
 
-$$\min\quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
+$\min\quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 - KKT 조건
   
@@ -369,7 +390,7 @@ $max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_
 
 → 저차원 데이터를 입력 받아서 고차원 공간상에 내적 결과값을 줄 수 있다면 굳이 $\Phi$를 찾지 않아도 된다!
 
-![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%2011.png)
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199525449-05428317-64ad-4ac0-bbc5-266015f5d493.png height = '300'></p>
 
 - 유효한 Kernel 함수의 조건
     - Symmetric Matrix
@@ -392,25 +413,25 @@ $max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_
     - Linear Kernel: 선형 분류 경계면만 생성 가능
     - Non-linear Kernel: 복잡한 형태의 분류 경계면 생성 가능
     
-    ![이미지 출처: [https://towardsdatascience.com/multiclass-classification-with-support-vector-machines-svm-kernel-trick-kernel-functions-f9d5377d6f02](https://towardsdatascience.com/multiclass-classification-with-support-vector-machines-svm-kernel-trick-kernel-functions-f9d5377d6f02)](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%2012.png)
     
-    이미지 출처: [https://towardsdatascience.com/multiclass-classification-with-support-vector-machines-svm-kernel-trick-kernel-functions-f9d5377d6f02](https://towardsdatascience.com/multiclass-classification-with-support-vector-machines-svm-kernel-trick-kernel-functions-f9d5377d6f02)
+    <p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199525684-704acd32-74e6-4432-85ab-8d1c778c7dff.png height = '500'></p>
+    이미지 출처: [https://towardsdatascience.com/multiclass-classification-with-support-vector-machines-svm-kernel-trick-kernel-functions-f9d5377d6f02]
 
 
 
-# 코딩 실습
+># **코딩 실습**
 
-### 실험 주제
+## 실험 주제
 
-### Main Experiment - Support Vector Classifier
+## *Main Experiment - Support Vector Classifier*
 
-#### 결과 해석
+### SVC 결과 해석
 
 
 
-### Additional Experiment - Support Vector Regressor
+## *Additional Experiment - Support Vector Regressor*
 
-#### 결과 해석
+### SVR 결과 해석
 
 
 
