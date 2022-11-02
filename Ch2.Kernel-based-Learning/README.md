@@ -195,8 +195,8 @@ $= {2 \over ||w||_2}$
   
     $\max L_D\left(\alpha_i\right)=\sum_{i=1}^N \alpha_i-\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j$  
     
-    $s.t.$    $\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ y }_{ i } } =0, \quad
-    { \alpha  }_{ i }\ge 0$
+    s.t. $\sum_{i=1}^N \alpha_i y_i=0, \quad \alpha_i \geq 0$
+  
     
     
     
