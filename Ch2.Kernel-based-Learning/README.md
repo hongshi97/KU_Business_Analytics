@@ -188,12 +188,12 @@ $= {2 \over ||w||_2}$
     
 - 원문제
   
-    ${\min\quad{L_{p}(\boldsymbol{w},b,{\alpha}_{i})}} =\frac{1}{2}{\left\|\boldsymbol{w}\right\|}^{2}-\sum _{i=1}^{N}{{\alpha}_{i}({y}_{i}({\boldsymbol{w}}^{T}{\boldsymbol{x}}_{i}+b)-1)}$
+    $\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$  
     $s.t.$   $\alpha_i \ge 0$ 
 
 - 쌍대(Dual) 문제
   
-    $\max \quad { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$
+    $\max L_D\left(\alpha_i\right)=\sum_{i=1}^N \alpha_i-\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j$  
     
     $s.t.$    $\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ y }_{ i } } =0, \quad
     { \alpha  }_{ i }\ge 0$
