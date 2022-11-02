@@ -26,7 +26,7 @@ Keywords: Margin, Hyperplane, Support Vector
 
 - Background
     - Hyperplane(초평면): a subspace of one dimension less than its ambient space
-      
+    
       
     <p align="center">
     <image src=https://user-images.githubusercontent.com/56019094/199520467-88e4f48d-11e1-42a2-868b-0ca4ddcf7b56.png
