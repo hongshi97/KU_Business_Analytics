@@ -228,7 +228,7 @@ $= {2 \over ||w||_2}$
     
     - $\boldsymbol{x}_i, y_i$는 주어진 데이터로부터 알아낼 수 있는 값이므로 단 하나뿐인 미지수인 $\alpha$를 알면 $\boldsymbol{w}$를 찾아낼 수 있음
     - $\boldsymbol{w}$를 구한 뒤, $(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$을 통해 $b$를 구할 수 있음
-- 새로운 Instance$(\boldsymbol{x}_{new}$가 들어오면) $y_i(\boldsymbol{w}^T\boldsymbol{x}_{new} + b) -1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
+- 새로운 Instance $\left(\mathbf{x}_{n e w}\right)$가 들어오면 $y_i\left(\mathbf{w}^T \mathbf{x}_{\text {new }}+b\right)-1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
 
 >## Soft Margin SVM
 
