@@ -6,7 +6,7 @@
    1. [Margin](#Margin)
    2. [Optimization](#Optimization-문제)
    3. [Soft Margin SVM](#Soft-Margin-SVM)
-   4. [Nonlinear&Kernel](#Nonlinear-&-Kernel)
+   4. [Nonlinear&Kernel](#Nonlinear&Kernel)
 2. [코딩 실습](#코딩-실습)
    1. [실험 주제](#실험-주제)
    2. [Main Experiment - Support Vector Classifier](#Main-Experiment---Support-Vector-Classifier)
@@ -335,7 +335,7 @@ Small C: 목적함수에서 Penalty의 영향력이 작아짐
       → Penalty의 영향력이 적으므로 Margin을 조금 더 넓게 잡을 수 있음  
       → $\alpha_i = C$인 Support Vector의 수가 상대적으로 많음  
 
->## Nonlinear & Kernel
+>## Nonlinear&Kernel
 
 - Linear Model의 한계: 분류 경계면이 비선형일 경우 잘 찾아내지 함
   
