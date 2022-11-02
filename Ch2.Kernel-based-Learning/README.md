@@ -175,7 +175,7 @@ $= {2 \over ||w||_2}$
     
 - 라그랑지안 문제
   
-    ${\min\quad{L_{p}(\boldsymbol{w},b,{\alpha}_{i})}}=\frac{1}{2}{\left\|\boldsymbol{w}\right\|}^{2}-\sum _{i=1}^{N}{{\alpha}_{i}({y}_{i}({\boldsymbol{w}}^{T}{\boldsymbol{x}}_{i}+b)-1)}$
+    $\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$
     $s.t.$   $\alpha_i \ge 0$
 
 >>### 쌍대(Dual) 문제로 변환
