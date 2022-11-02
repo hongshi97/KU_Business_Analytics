@@ -7,7 +7,6 @@
 > Keywords: Margin, Hyperplane, Support Vector
 > 
 
-<aside>
 📢 요약: Support Vector Machine은 Vector Space 상에서 Vector들을 가장 잘 분류하는 Hyperplane을 수립하는 것을 목표로 한다.
 - Background
     - Hyperplane(초평면): a subspace of one dimension less than its ambient space
@@ -99,18 +98,18 @@
         ⇒ $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$ 
         
 
-- 한편, Margin은 Plus-plane과 Minus-plane 사이의 거리($distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$)와 같음
+- 한편, Margin은 Plus-plane과 Minus-plane 사이의 거리 $distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$와 같음
     - $Margin = distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$
       
-                     $= ||\boldsymbol{x}^+ - \boldsymbol{x}^-||_2$
+                 $= ||\boldsymbol{x}^+ - \boldsymbol{x}^-||_2$
         
-                     $= ||\boldsymbol{x}^- + \lambda\boldsymbol{w}- \boldsymbol{x}^-||_2$             where, $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
+                 $= ||\boldsymbol{x}^- + \lambda\boldsymbol{w}- \boldsymbol{x}^-||_2$             where, $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
         
-                     $= ||\lambda\boldsymbol{w}||_2$
+                 $= ||\lambda\boldsymbol{w}||_2$
         
-                     $= \lambda \sqrt{\boldsymbol{w}^T\boldsymbol{w}}$
+                 $= \lambda \sqrt{\boldsymbol{w}^T\boldsymbol{w}}$
     
-    ​                    $= {2 \over \boldsymbol{w}^T\boldsymbol{w}}\sqrt{\boldsymbol{w}^T\boldsymbol{w}}$                          where, $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$
+​                    $= {2 \over \boldsymbol{w}^T\boldsymbol{w}}\sqrt{\boldsymbol{w}^T\boldsymbol{w}}$                          where, $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$
     
     ​                    $= {2 \over \sqrt{\boldsymbol{w}^T\boldsymbol{w}}}$
     
@@ -150,8 +149,7 @@
     ⇒ 위 식에서 $y_i, \boldsymbol{x}_i$는 주어진 값이고, $\boldsymbol{w}$와 $b$가 미지수 즉, 최적화 대상
     
 - 라그랑지안 문제
-  
-    ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
+  ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
     $s.t.$   $\alpha_i \ge 0$
 
 ### 쌍대(Dual) 문제로 변환
