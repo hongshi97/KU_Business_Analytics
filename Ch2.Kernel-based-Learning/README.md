@@ -147,9 +147,9 @@ $= {2 \over ||w||_2}$
 
 - Margin을 최대화:  $max$  ${2 \over ||w||^2}$    --역수->     $min$   ${1 \over 2}||w||^2$
   
-    $min$   ${1 \over 2}||w||^2$
+    $$min   {1 \over 2}||w||^2$$
     
-    $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
+    $$s.t.  \quad y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1 \quad   , \forall i$$
     
     <p align = 'center'>
     <img src = https://user-images.githubusercontent.com/56019094/199522537-dcbdf18f-d3d0-4e16-8130-23c6f1a73f14.png height = '300'></p>
@@ -167,35 +167,35 @@ $= {2 \over ||w||_2}$
 
 - 기존 목적 함수 및 제약 조건
   
-    $min \quad {1 \over 2}||w||^2$
+    $$min \quad {1 \over 2}||w||^2$$
     
-    $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
+    $$s.t. \quad   y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1 \quad   , \forall i$$
     
     ⇒ 위 식에서 $y_i, \boldsymbol{x}_i$는 주어진 값이고, $\boldsymbol{w}$와 $b$가 미지수 즉, 최적화 대상
     
 - 라그랑지안 문제
   
-    $\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$  
-    $s.t.$   $\alpha_i \ge 0$
+    $$\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$$  
+    $$s.t.$   $\alpha_i \ge 0$$
 
 >>### 쌍대(Dual) 문제로 변환
 
 - KKT 조건
   
-    ${\partial L_p \over \partial \boldsymbol{w}} = 0$   ⇒  $\boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$
+    $${\partial L_p \over \partial \boldsymbol{w}} = 0 \quad   ⇒  \quad \boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$$  
     
-    ${\partial L_p \over  \partial b} = 0$   ⇒    $\sum_{i=1}^N {\alpha_iy_i} = 0$
+    $${\partial L_p \over  \partial b} = 0 \quad   ⇒  \quad  \sum_{i=1}^N {\alpha_iy_i} = 0$$
     
 - 원문제
   
-    $\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$  
-    $s.t.$   $\alpha_i \ge 0$ 
+    $$\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1\right)$$  
+    $$s.t. \quad   \alpha_i \ge 0$$ 
 
 - 쌍대(Dual) 문제
   
-    $\max L_D\left(\alpha_i\right)=\sum_{i=1}^N \alpha_i-\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j$  
+    $$\max L_D\left(\alpha_i\right)=\sum_{i=1}^N \alpha_i-\frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j \mathbf{x}_i^T \mathbf{x}_j$$    
     
-    s.t. $\sum_{i=1}^N \alpha_i y_i=0, \quad \alpha_i \geq 0$
+    $$s.t. \quad \sum_{i=1}^N \alpha_i y_i=0, \quad \alpha_i \geq 0$$
   
     
     
@@ -224,11 +224,11 @@ $= {2 \over ||w||_2}$
     
 - 이전 단계에서 아래와 같은 수식을 얻었음
   
-    $\boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$
+    $$\boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$$
     
     - $\boldsymbol{x}_i, y_i$는 주어진 데이터로부터 알아낼 수 있는 값이므로 단 하나뿐인 미지수인 $\alpha$를 알면 $\boldsymbol{w}$를 찾아낼 수 있음
     - $\boldsymbol{w}$를 구한 뒤, $(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$을 통해 $b$를 구할 수 있음
-- 새로운 Instance $\left(\mathbf{x}_{n e w}\right)$가 들어오면 $y_i\left(\mathbf{w}^T \mathbf{x}_{\text {new }}+b\right)-1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
+- $\boldsymbol{x}_{new}$ (새로운 Instance)가 들어오면 위 수식에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
 
 >## Soft Margin SVM
 
@@ -237,9 +237,9 @@ $= {2 \over ||w||_2}$
 
 >>### 목적 함수 및 제약 조건
 
-$min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i$
+$$min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i$$  
 
-$s.t. \quad y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1-\xi_i, \quad \xi_i \ge0, \forall i$
+$$s.t. \quad y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1-\xi_i, \quad \xi_i \ge0, \forall \quad i$$
 
 <p align = 'left'><img src = https://user-images.githubusercontent.com/56019094/199524039-91704ab9-95e5-40be-a78e-83a4f7151e5a.png height = '250'></p>
 
@@ -253,44 +253,44 @@ $\xi$: Penalty
 
 >>### 라그랑지안 문제로 변환
 
-$ min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+$$\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2+C \sum_{i=1}^N \xi_i-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1+\xi_i\right)-\sum_{i=1}^N \mu_i \xi_i$$  
 
-$s.t.\quad\alpha_i \ge 0$
+$$s.t.\quad\alpha_i \ge 0$$
 
 >>### 쌍대(Dual) 문제로 변환
 
 - 원문제
 
-$\min \quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+$$\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2+C \sum_{i=1}^N \xi_i-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \mathbf{x}_i+b\right)-1+\xi_i\right)-\sum_{i=1}^N \mu_i \xi_i$$  
 
 
-$s.t.\quad\alpha_i \ge 0$
+$$s.t.\quad\alpha_i \ge 0$$
 
 - KKT 조건
   
-    ${\partial L_p \over {\partial \boldsymbol{w}}} = 0 \quad$ ⇒     $\boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\boldsymbol{x}_i$
+    $${\partial L_p \over {\partial \boldsymbol{w}}} = 0 \quad ⇒  \quad   \boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\boldsymbol{x}_i$$  
     
-    ${\partial L_p \over \partial b} = 0\quad$⇒     $\sum_{i=1}^n\alpha_iy_i = 0$
+    $${\partial L_p \over \partial b} = 0 \quad ⇒ \quad     \sum_{i=1}^n\alpha_iy_i = 0$$  
     
-    ${\partial L_p \over \partial \xi_i} = 0\quad$⇒     $C - \alpha_i - \mu_i = 0$
+    $${\partial L_p \over \partial \xi_i} = 0 \quad ⇒ \quad    C - \alpha_i - \mu_i = 0$$
     
 
-⇒ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + C\sum_i \xi_i -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j - b\sum_i\alpha_iy_i + \sum_i\alpha_i - \sum_i\alpha_i\xi_i - \sum_i\mu_i\xi_i$
+ $$ ⇒ \quad L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + C\sum_i \xi_i -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j - b\sum_i\alpha_iy_i + \sum_i\alpha_i - \sum_i\alpha_i\xi_i - \sum_i\mu_i\xi_i$$ 
 
-→ $\sum_i(C-\alpha_i-\mu_i)\xi_i = 0$, $\sum_i\alpha_iy_i = 0$
+ $$ → \quad \sum_i(C-\alpha_i-\mu_i)\xi_i = 0, \quad \sum_i\alpha_iy_i = 0$$  
 
-→ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + \sum_i\alpha_i$ 
+ $$ → \quad L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + \sum_i\alpha_i$$   
 
-→ $L_D = \sum_i\alpha_i  - {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j$
+ $$ → \quad L_D = \sum_i\alpha_i  - {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j$$
 
-⇒ $L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$
+ $$ ⇒ \quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$$
 
 - 쌍대 문제
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$
+$$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$$    
 
 
-$s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
+$$s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$$
 
 
 
@@ -352,41 +352,41 @@ Small C: 목적함수에서 Penalty의 영향력이 작아짐
 
 >>### 고차원에서의 목적 함수 및 제약 조건
 
-$min\quad{1 \over 2}||\boldsymbol{w}||^2 + C\sum_{i=1}^N\xi_i$
+$$min\quad{1 \over 2}||\boldsymbol{w}||^2 + C\sum_{i=1}^N\xi_i$$  
 
 
-$s.t\quad y_i(\boldsymbol{w}^T\Phi(\boldsymbol{x}_i) + b) \ge 1-\xi_i,\quad \xi_i \ge0, \quad\forall i$
+$$s.t\quad y_i(\boldsymbol{w}^T\Phi(\boldsymbol{x}_i) + b) \ge 1-\xi_i,\quad \xi_i \ge0, \quad\forall i$$
 
 ⇒ **라그랑지안 문제로 변환**
 
-$\min\quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
-
+$$\min L_p\left(\mathbf{w}, b, \alpha_i\right)=\frac{1}{2}\|\mathbf{w}\|^2+C \sum_{i=1}^N \xi_i-\sum_{i=1}^N \alpha_i\left(y_i\left(\mathbf{w}^T \Phi\left(\mathbf{x}_i\right)+b\right)-1+\xi_i\right)-\sum_{i=1}^N \mu_i \xi_i$$  
 - KKT 조건
   
-    ${\partial L_P \over \partial w} = 0\quad$⇒ $\boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\Phi(\boldsymbol{x}_i)$
+    $${\partial L_P \over \partial w} = 0\quad ⇒ \quad \boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\Phi(\boldsymbol{x}_i)$$  
     
-    ${\partial L_P \over \partial b} = 0\quad$⇒ $\sum_{i=1}^n\alpha_iy_i = 0$
+    $${\partial L_P \over \partial b} = 0\quad ⇒ \quad \sum_{i=1}^n\alpha_iy_i = 0$$  
     
-    ${\partial L_P \over \partial \xi_i} = 0\quad$⇒ $C - \alpha_i - \mu_i = 0$
+    $${\partial L_P \over \partial \xi_i} = 0\quad ⇒ \quad C - \alpha_i - \mu_i = 0$$
     
 
 ⇒ 쌍대(Dual) 문제로 변환
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$
+$$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$$  
 
-$s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
+$$s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, \quad 0 \le \alpha_i \le C$$
 
 😓 고차원으로 Mapping시키는 함수 $\Phi$를 어떻게 찾을까,,,?
 
 👍🏻 Kernel Trick을 쓰자!
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$
+$$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$$
 
-⇒  $max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)$
+  $$ ⇒ max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)$$
 
 ### Kernel Trick
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$에서와 같이 고차원에서는 항상 $\Phi({\boldsymbol{x}_i})^T\Phi(\boldsymbol{x}_j)$와 같이 벡터의 내적 형태로 존재
+$$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$$  
+위 수식에서와 같이 고차원에서는 항상 $\Phi({\boldsymbol{x}_i})^T\Phi(\boldsymbol{x}_j)$와 같이 벡터의 내적 형태로 존재
 
 → 저차원 데이터를 입력 받아서 고차원 공간상에 내적 결과값을 줄 수 있다면 굳이 $\Phi$를 찾지 않아도 된다!
 
