@@ -8,6 +8,7 @@
 > 
 
 📢 요약: Support Vector Machine은 Vector Space 상에서 Vector들을 가장 잘 분류하는 Hyperplane을 수립하는 것을 목표로 한다.
+
 - Background
     - Hyperplane(초평면): a subspace of one dimension less than its ambient space
       
@@ -75,45 +76,47 @@
 
 ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%203.png)
 
-- Hyperplane을 $\boldsymbol{w}^T\boldsymbol{x} + b$
-  
-    where $\boldsymbol{w} = (w_1,w_2)^T$ 라고 가정
-    
-    - 벡터 $\boldsymbol{w}$는 이 Hyperplane과 수직인 법선 벡터
-    - $\boldsymbol{w}$에 대해 원점과의 거리가 $b$인 직선의 방정식은 $\boldsymbol{w}^T\boldsymbol{x} + b = 0$  ⇒ $w_1x_1 + w_2x_2 + b = 0$
-    - 위 직선의 기울기는 $- {w_1\over w_2}$이고, 법선 벡터 $\boldsymbol{w}$의 기울기는 $w_2 \over w_1$ ⇒ 두 직선은 직교
-- ⇒ Plus-plane 위에 있는 벡터 $\boldsymbol{x}^+$와 Minus-plane 위에 있는 벡터 $\boldsymbol{x}^-$ 사이의 관계를 다음과 같이 정의 가능
-    - $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
-        - 위 수식은 $\boldsymbol{x}^-$를 $\boldsymbol{w}$ 방향으로 $\lambda$만큼 평행이동시킨다는 의미
-    - $\lambda$는 계산할 수 있을까?
-      
-        : $\boldsymbol{w}^T\boldsymbol{x}^+ + b = 1$
-        
-        → $\boldsymbol{w}^T(\boldsymbol{x}^- + \lambda\boldsymbol{w}) + b = 1$
-        
-        → $\boldsymbol{w}^T\boldsymbol{x}^- + b + \lambda \boldsymbol{w}^T\boldsymbol{w} = 1$          where, $(\boldsymbol{w}^T\boldsymbol{x}^- + b = 1)$
-        
-        →  $-1 + \lambda\boldsymbol{w}^T\boldsymbol{w} = 1$
-        
-        ⇒ $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$ 
-        
+Hyperplane을 $\boldsymbol{w}^T\boldsymbol{x} + b$
 
-- 한편, Margin은 Plus-plane과 Minus-plane 사이의 거리 $distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$와 같음
-    - $Margin = distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$
-      
-                 $= ||\boldsymbol{x}^+ - \boldsymbol{x}^-||_2$
-        
-                 $= ||\boldsymbol{x}^- + \lambda\boldsymbol{w}- \boldsymbol{x}^-||_2$             where, $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
-        
-                 $= ||\lambda\boldsymbol{w}||_2$
-        
-                 $= \lambda \sqrt{\boldsymbol{w}^T\boldsymbol{w}}$
+where $\boldsymbol{w} = (w_1,w_2)^T$ 라고 가정
+
+- 벡터 $\boldsymbol{w}$는 이 Hyperplane과 수직인 법선 벡터
+- $\boldsymbol{w}$에 대해 원점과의 거리가 $b$인 직선의 방정식은 $\boldsymbol{w}^T\boldsymbol{x} + b = 0$  ⇒ $w_1x_1 + w_2x_2 + b = 0$
+- 위 직선의 기울기는 $- {w_1\over w_2}$이고, 법선 벡터 $\boldsymbol{w}$의 기울기는 $w_2 \over w_1$ ⇒ 두 직선은 직교
+
+⇒ Plus-plane 위에 있는 벡터 $\boldsymbol{x}^+$와 Minus-plane 위에 있는 벡터 $\boldsymbol{x}^-$ 사이의 관계를 다음과 같이 정의 가능
+- $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
+    - 위 수식은 $\boldsymbol{x}^-$를 $\boldsymbol{w}$ 방향으로 $\lambda$만큼 평행이동시킨다는 의미
+- $\lambda$는 계산할 수 있을까?
+  
+    : $\boldsymbol{w}^T\boldsymbol{x}^+ + b = 1$
     
-​                    $= {2 \over \boldsymbol{w}^T\boldsymbol{w}}\sqrt{\boldsymbol{w}^T\boldsymbol{w}}$                          where, $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$
+    → $\boldsymbol{w}^T(\boldsymbol{x}^- + \lambda\boldsymbol{w}) + b = 1$
     
-    ​                    $= {2 \over \sqrt{\boldsymbol{w}^T\boldsymbol{w}}}$
+    → $\boldsymbol{w}^T\boldsymbol{x}^- + b + \lambda \boldsymbol{w}^T\boldsymbol{w} = 1$          where, $(\boldsymbol{w}^T\boldsymbol{x}^- + b = 1)$
     
-    ​                     $= {2 \over ||w||_2}$
+    →  $-1 + \lambda\boldsymbol{w}^T\boldsymbol{w} = 1$
+    
+    ⇒ $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$ 
+    
+
+한편, Margin은 Plus-plane과 Minus-plane 사이의 거리 $distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$와 같음
+
+$Margin = distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$
+
+$= ||\boldsymbol{x}^+ - \boldsymbol{x}^-||_2$
+
+$= ||\boldsymbol{x}^- + \lambda\boldsymbol{w}- \boldsymbol{x}^-||_2$ , where, $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
+
+$= ||\lambda\boldsymbol{w}||_2$
+
+$= \lambda \sqrt{\boldsymbol{w}^T\boldsymbol{w}}$
+
+ $= {2 \over \boldsymbol{w}^T\boldsymbol{w}}\sqrt{\boldsymbol{w}^T\boldsymbol{w}}$ , where, $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$
+
+$= {2 \over \sqrt{\boldsymbol{w}^T\boldsymbol{w}}}$
+
+$= {2 \over ||w||_2}$
 
 # Optimization 문제
 
@@ -121,7 +124,7 @@
 
 ### 목적 함수 및 제약 조건
 
-- Margin을 최대화:  $max$  ${2 \over ||w||^2}$    --역수->     $$$min$   ${1 \over 2}||w||^2$
+- Margin을 최대화:  $max$  ${2 \over ||w||^2}$    --역수->     $min$   ${1 \over 2}||w||^2$
   
     $min$   ${1 \over 2}||w||^2$
     
@@ -142,14 +145,15 @@
 
 - 기존 목적 함수 및 제약 조건
   
-    $min$   ${1 \over 2}||w||^2$
+    $min \quad {1 \over 2}||w||^2$
     
     $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
     
     ⇒ 위 식에서 $y_i, \boldsymbol{x}_i$는 주어진 값이고, $\boldsymbol{w}$와 $b$가 미지수 즉, 최적화 대상
     
 - 라그랑지안 문제
-  ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
+  
+    $${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$$
     $s.t.$   $\alpha_i \ge 0$
 
 ### 쌍대(Dual) 문제로 변환
@@ -162,13 +166,12 @@
     
 - 원문제
   
-    ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
+    $${\min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$$
     $s.t.$   $\alpha_i \ge 0$ 
 
 - 쌍대(Dual) 문제
   
-    $\max { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$
-    
+    $$\max \quad { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$$
     
     $s.t.$    $\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ y }_{ i } } =0, \quad
     { \alpha  }_{ i }\ge 0$
@@ -229,7 +232,7 @@ $\xi$: Penalty
 
 ### 라그랑지안 문제로 변환
 
-${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+$$ min \quad { L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
 
 $s.t.\quad\alpha_i \ge 0$
 
@@ -237,7 +240,7 @@ $s.t.\quad\alpha_i \ge 0$
 
 - 원문제
 
-${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+$$\min \quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }   =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
 
 
 $s.t.\quad\alpha_i \ge 0$
@@ -272,45 +275,44 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
 ### Plus) $\alpha_i$ 값에 따른 Instance 위치
 
-- KKT 조건으로부터 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1+\xi_i) = 0$ 수식을 얻을 수 있었음
-    - Support Vector에 대해서만 $\alpha_i \ne 0$이 성립
-- 또한 $C - \alpha_i - \mu_i = 0, \mu_i\xi_i = 0$이라는 수식이 성립함
-    - **Case 1)** $\alpha_i = 0\quad$⇒ Support Vector가 아닌 Instance
-    - **Case 2)** $0<\alpha_i < C\quad$
-      →  $\mu_i < C$이면 $C - \alpha_i - \mu_i = 0$이 성립하기 위해 $\mu_i > 0$ 이어야 함. 
-      → $\mu_i > 0$이라면 $\mu_i\xi_i = 0$이 성립하기 위해 $\xi_i = 0$이어야 함
-      
-        → $y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1 = 0$인 Instance
-      
-        ⇒ Margin 위에 위치하는 Support Vector
-      
-    - **Case 3)** $\alpha_i = C \quad$
-      → $C - \alpha_i - \mu_i = 0$에서 $\alpha_i = C$라면 $\mu_i = 0$
-      
-        → $\mu_i = 0$이라면 $\xi_i > 0$
-      
-        ⇒ Margin 밖에 위치하는 Support Vector
-      
-        ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%207.png)
-      
+KKT 조건으로부터 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1+\xi_i) = 0$ 수식을 얻을 수 있었음
+- Support Vector에 대해서만 $\alpha_i \ne 0$이 성립
 
-- Hyperparameter C(오분류 비용)에 따른 분류 경계면 변화
+또한 $C - \alpha_i - \mu_i = 0, \mu_i\xi_i = 0$이라는 수식이 성립함
+- **Case 1)** $\alpha_i = 0\quad$⇒ Support Vector가 아닌 Instance
+- **Case 2)** $0<\alpha_i < C\quad$
+  →  $\mu_i < C$이면 $C - \alpha_i - \mu_i = 0$이 성립하기 위해 $\mu_i > 0$ 이어야 함. 
+  → $\mu_i > 0$이라면 $\mu_i\xi_i = 0$이 성립하기 위해 $\xi_i = 0$이어야 함
   
-    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%208.png)
-    
-    $$
-    min \quad {1 \over 2}||\bold{w}||^2 +C\sum_{i=1}^N \xi_i
-    $$
-    
-    - Large C: 목적함수에서 Penalty가 더 큰 영향력을 가짐
-                  → Penalty를 줄이는 방향으로 학습이 진행
-                  → Margin이 좁고, $\alpha_i = C$인 Support Vector의 수가 상대적으로 적음
-    - Small C: 목적함수에서 Penalty의 영향력이 작아짐
-      
-                  → Penalty의 영향력이 적으므로 Margin을 조금 더 넓게 잡을 수 있음
-        
-                  → $\alpha_i = C$인 Support Vector의 수가 상대적으로 많음
-    
+    → $y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1 = 0$인 Instance
+  
+    ⇒ Margin 위에 위치하는 Support Vector
+  
+- **Case 3)** $\alpha_i = C \quad$
+  → $C - \alpha_i - \mu_i = 0$에서 $\alpha_i = C$라면 $\mu_i = 0$
+  
+    → $\mu_i = 0$이라면 $\xi_i > 0$
+  
+    ⇒ Margin 밖에 위치하는 Support Vector
+  
+    ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%207.png)
+  
+
+Hyperparameter C(오분류 비용)에 따른 분류 경계면 변화
+
+![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%208.png)
+
+$$
+min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i
+$$
+
+Large C: 목적함수에서 Penalty가 더 큰 영향력을 가짐   
+    → Penalty를 줄이는 방향으로 학습이 진행  
+    → Margin이 좁고, $\alpha_i = C$인 Support Vector의 수가 상대적으로 적음  
+
+Small C: 목적함수에서 Penalty의 영향력이 작아짐   
+      → Penalty의 영향력이 적으므로 Margin을 조금 더 넓게 잡을 수 있음  
+      → $\alpha_i = C$인 Support Vector의 수가 상대적으로 많음  
 
 # Nonlinear & Kernel
 
@@ -336,7 +338,7 @@ $s.t\quad y_i(\boldsymbol{w}^T\Phi(\boldsymbol{x}_i) + b) \ge 1-\xi_i,\quad \xi_
 
 ⇒ **라그랑지안 문제로 변환**
 
-${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+$$\min\quad{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$$
 
 - KKT 조건
   
