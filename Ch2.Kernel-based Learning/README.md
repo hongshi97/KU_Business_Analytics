@@ -76,7 +76,7 @@
 
 ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%203.png)
 
-- Hyperplane을 $\bold{w}^T\bold{x} + b$
+- Hyperplane을 $\boldsymbol{w}^T\boldsymbol{x} + b$
   
     where $\bold{w} = (w_1,w_2)^T$ 라고 가정
     
