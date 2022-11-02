@@ -78,41 +78,41 @@
 
 - Hyperplane을 $\boldsymbol{w}^T\boldsymbol{x} + b$
   
-    where $\bold{w} = (w_1,w_2)^T$ 라고 가정
+    where $\boldsymbol{w} = (w_1,w_2)^T$ 라고 가정
     
-    - 벡터 $\bold{w}$는 이 Hyperplane과 수직인 법선 벡터
-    - $\bold{w}$에 대해 원점과의 거리가 $b$인 직선의 방정식은 $\bold{w}^T\bold{x} + b = 0$  ⇒ $w_1x_1 + w_2x_2 + b = 0$
-    - 위 직선의 기울기는 $- {w_1\over w_2}$이고, 법선 벡터 $\bold{w}$의 기울기는 $w_2 \over w_1$ ⇒ 두 직선은 직교
-- ⇒ Plus-plane 위에 있는 벡터 $\bold{x}^+$와 Minus-plane 위에 있는 벡터 $\bold{x}^-$ 사이의 관계를 다음과 같이 정의 가능
-    - $\bold{x}^+ = \bold{x}^- + \lambda \bold{w}$
-        - 위 수식은 $\bold{x}^-$를 $\bold{w}$ 방향으로 $\lambda$만큼 평행이동시킨다는 의미
+    - 벡터 $\boldsymbol{w}$는 이 Hyperplane과 수직인 법선 벡터
+    - $\boldsymbol{w}$에 대해 원점과의 거리가 $b$인 직선의 방정식은 $\boldsymbol{w}^T\boldsymbol{x} + b = 0$  ⇒ $w_1x_1 + w_2x_2 + b = 0$
+    - 위 직선의 기울기는 $- {w_1\over w_2}$이고, 법선 벡터 $\boldsymbol{w}$의 기울기는 $w_2 \over w_1$ ⇒ 두 직선은 직교
+- ⇒ Plus-plane 위에 있는 벡터 $\boldsymbol{x}^+$와 Minus-plane 위에 있는 벡터 $\boldsymbol{x}^-$ 사이의 관계를 다음과 같이 정의 가능
+    - $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
+        - 위 수식은 $\boldsymbol{x}^-$를 $\boldsymbol{w}$ 방향으로 $\lambda$만큼 평행이동시킨다는 의미
     - $\lambda$는 계산할 수 있을까?
       
-        : $\bold{w}^T\bold{x}^+ + b = 1$
+        : $\boldsymbol{w}^T\boldsymbol{x}^+ + b = 1$
         
-        → $\bold{w}^T(\bold{x}^- + \lambda\bold{w}) + b = 1$
+        → $\boldsymbol{w}^T(\boldsymbol{x}^- + \lambda\boldsymbol{w}) + b = 1$
         
-        → $\bold{w}^T\bold{x}^- + b + \lambda \bold{w}^T\bold{w} = 1$          where, $(\bold{w}^T\bold{x}^- + b = 1)$
+        → $\boldsymbol{w}^T\boldsymbol{x}^- + b + \lambda \boldsymbol{w}^T\boldsymbol{w} = 1$          where, $(\boldsymbol{w}^T\boldsymbol{x}^- + b = 1)$
         
-        →  $-1 + \lambda\bold{w}^T\bold{w} = 1$
+        →  $-1 + \lambda\boldsymbol{w}^T\boldsymbol{w} = 1$
         
-        ⇒ $\lambda = {2 \over \bold{w}^T\bold{w}}$ 
+        ⇒ $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$ 
         
 
-- 한편, Margin은 Plus-plane과 Minus-plane 사이의 거리($distance(\bold{x}^+, \bold{x}^-)$)와 같음
-    - $Margin = distance(\bold{x}^+, \bold{x}^-)$
+- 한편, Margin은 Plus-plane과 Minus-plane 사이의 거리($distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$)와 같음
+    - $Margin = distance(\boldsymbol{x}^+, \boldsymbol{x}^-)$
       
-                     $= ||\bold{x}^+ - \bold{x}^-||_2$
+                     $= ||\boldsymbol{x}^+ - \boldsymbol{x}^-||_2$
         
-                     $= ||\bold{x}^- + \lambda\bold{w}- \bold{x}^-||_2$             where, $\bold{x}^+ = \bold{x}^- + \lambda \bold{w}$
+                     $= ||\boldsymbol{x}^- + \lambda\boldsymbol{w}- \boldsymbol{x}^-||_2$             where, $\boldsymbol{x}^+ = \boldsymbol{x}^- + \lambda \boldsymbol{w}$
         
-                     $= ||\lambda\bold{w}||_2$
+                     $= ||\lambda\boldsymbol{w}||_2$
         
-                     $= \lambda \sqrt{\bold{w}^T\bold{w}}$
+                     $= \lambda \sqrt{\boldsymbol{w}^T\boldsymbol{w}}$
     
-    ​                    $= {2 \over \bold{w}^T\bold{w}}\sqrt{\bold{w}^T\bold{w}}$                          where, $\lambda = {2 \over \bold{w}^T\bold{w}}$
+    ​                    $= {2 \over \boldsymbol{w}^T\boldsymbol{w}}\sqrt{\boldsymbol{w}^T\boldsymbol{w}}$                          where, $\lambda = {2 \over \boldsymbol{w}^T\boldsymbol{w}}$
     
-    ​                    $= {2 \over \sqrt{\bold{w}^T\bold{w}}}$
+    ​                    $= {2 \over \sqrt{\boldsymbol{w}^T\boldsymbol{w}}}$
     
     ​                     $= {2 \over ||w||_2}$
 
@@ -126,13 +126,13 @@
   
     $min$   ${1 \over 2}||w||^2$
     
-    $s.t.$   $y_i(\bold{w}^T\bold{x}_i + b) \ge 1$   , $\forall i$
+    $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
     
     ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%204.png)
     
-    - Let $\bold{x}_i$ = 파란색 Data Object, $\bold{x}_j$ = 빨간색 Data Object
-        - $\bold{w}\bold{x}_i \ge 1$      $(y_i = +1)$  →   $y_i(\bold{w} \cdot \bold{x}_i + b) \ge +1$
-        - $\bold{w}\bold{x}_j \le -1$  $(y_j = -1)$ →   $y_j(\bold{w} \cdot \bold{x}_j + b ) \ge +1$
+    - Let $\boldsymbol{x}_i$ = 파란색 Data Object, $\boldsymbol{x}_j$ = 빨간색 Data Object
+        - $\boldsymbol{w}\boldsymbol{x}_i \ge 1$      $(y_i = +1)$  →   $y_i(\boldsymbol{w} \cdot \boldsymbol{x}_i + b) \ge +1$
+        - $\boldsymbol{w}\boldsymbol{x}_j \le -1$  $(y_j = -1)$ →   $y_j(\boldsymbol{w} \cdot \boldsymbol{x}_j + b ) \ge +1$
         
         ⇒ $y$ = $\pm 1$인 경우 모두, 수식이 동일하게 위 제약 조건과 같이 정리됨 
             (Plus. SVM에서 Class Label을 0/1이 아닌 +1/-1로 설정한 이유) 
@@ -145,31 +145,31 @@
   
     $min$   ${1 \over 2}||w||^2$
     
-    $s.t.$   $y_i(\bold{w}^T\bold{x}_i + b) \ge 1$   , $\forall i$
+    $s.t.$   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1$   , $\forall i$
     
-    ⇒ 위 식에서 $y_i, \bold{x}_i$는 주어진 값이고, $\bold{w}$와 $b$가 미지수 즉, 최적화 대상
+    ⇒ 위 식에서 $y_i, \boldsymbol{x}_i$는 주어진 값이고, $\boldsymbol{w}$와 $b$가 미지수 즉, 최적화 대상
     
 - 라그랑지안 문제
   
-    ${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bold{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \bold{w} }^{ T }{ \bold{x} }_{ i }+b)-1) }$
+    ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
     $s.t.$   $\alpha_i \ge 0$
 
 ### 쌍대(Dual) 문제로 변환
 
 - KKT 조건
   
-    ${\partial L_p \over \partial \bold{w}} = 0$   ⇒  $\bold{w} = \sum_{i=1}^N {\alpha_iy_i\bold{x}_i}$
+    ${\partial L_p \over \partial \boldsymbol{w}} = 0$   ⇒  $\boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$
     
     ${\partial L_p \over  \partial b} = 0$   ⇒    $\sum_{i=1}^N {\alpha_iy_i} = 0$
     
 - 원문제
   
-    ${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bold{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \bold{w} }^{ T }{ \bold{x} }_{ i }+b)-1) }$
+    ${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 }-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1) }$
     $s.t.$   $\alpha_i \ge 0$ 
 
 - 쌍대(Dual) 문제
   
-    $\max { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \bold{x} }_{ i }^{ T }{ \bold{x} }_{ j } }  }$
+    $\max { { L }_{ D }({ \alpha  }_{ i }) } =\sum _{ i=1 }^{ N }{ { \alpha  }_{ i } } -\frac { 1 }{ 2 } \sum _{ i=1 }^{ N }{ \sum _{ j=1 }^{ N }{ { \alpha  }_{ i }{ { \alpha  }_{ j }y }_{ i }{ y }_{ j }{ \boldsymbol{x} }_{ i }^{ T }{ \boldsymbol{x} }_{ j } }  }$
     
     
     $s.t.$    $\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ y }_{ i } } =0, \quad
@@ -177,17 +177,17 @@
     
     
     
-    - 위 쌍대 문제에서 $\bold{x}$와 $y$는 데이터로부터 주어진 값이고 $\alpha$만 미지수
-    - 이때, KKT 조건에 따라 $\alpha_i(y_i(\bold{w}^T\bold{x}_i + b) -1) = 0$ 이라는 수식이 성립함
+    - 위 쌍대 문제에서 $\boldsymbol{x}$와 $y$는 데이터로부터 주어진 값이고 $\alpha$만 미지수
+    - 이때, KKT 조건에 따라 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$ 이라는 수식이 성립함
       
-        ⇒ $\alpha_i = 0, (y_i(\bold{w}^T\bold{x}_i + b) -1) \ne 0$ 이거나 $\alpha_i \ne 0, (y_i(\bold{w}^T\bold{x}_i + b) -1) = 0$
+        ⇒ $\alpha_i = 0, (y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) \ne 0$ 이거나 $\alpha_i \ne 0, (y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$
         
-        - $\alpha_i \ne 0, (y_i(\bold{w}^T\bold{x}_i + b) -1) = 0$인 경우,
+        - $\alpha_i \ne 0, (y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$인 경우,
           
-            $(y_i(\bold{w}^T\bold{x}_i + b) -1) = 0$   →   $y_i(\bold{w}^T\bold{x}_i + b) = 1$이라는 것은 
+            $(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$   →   $y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) = 1$이라는 것은 
             
-            $\bold{x}_i$가 Plus-plane과 Minus-plane 상에 위치한다는 것을 의미
-            → 이 $\bold{x}_i$ ( = Support Vector)에 대해서만 $\alpha_i$는 0보다 큰 값을 가지게 됨.
+            $\boldsymbol{x}_i$가 Plus-plane과 Minus-plane 상에 위치한다는 것을 의미
+            → 이 $\boldsymbol{x}_i$ ( = Support Vector)에 대해서만 $\alpha_i$는 0보다 큰 값을 가지게 됨.
             
             ![이미지 출처: [https://techblog-history-younghunjo1.tistory.com/m/78](https://techblog-history-younghunjo1.tistory.com/m/78)](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%205.png)
             
@@ -196,17 +196,17 @@
 
 ### 최종 Hyperplane 구하기
 
-- SVM에서 찾고자 하는 것은 Margin이 최대화된 Hyperplane $\bold{w}^T\bold{x} + b$
+- SVM에서 찾고자 하는 것은 Margin이 최대화된 Hyperplane $\boldsymbol{w}^T\boldsymbol{x} + b$
   
-    → $\bold{w}$와 $b$를 찾으면 Hyperplane 구할 수 있음
+    → $\boldsymbol{w}$와 $b$를 찾으면 Hyperplane 구할 수 있음
     
 - 이전 단계에서 아래와 같은 수식을 얻었음
   
-    $\bold{w} = \sum_{i=1}^N {\alpha_iy_i\bold{x}_i}$
+    $\boldsymbol{w} = \sum_{i=1}^N {\alpha_iy_i\boldsymbol{x}_i}$
     
-    - $\bold{x}_i, y_i$는 주어진 데이터로부터 알아낼 수 있는 값이므로 단 하나뿐인 미지수인 $\alpha$를 알면 $\bold{w}$를 찾아낼 수 있음
-    - $\bold{w}$를 구한 뒤, $(y_i(\bold{w}^T\bold{x}_i + b) -1) = 0$을 통해 $b$를 구할 수 있음
-- 새로운 Instance$(\bold{x}_{new}$가 들어오면) $y_i(\bold{w}^T\bold{x}_{new} + b) -1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
+    - $\boldsymbol{x}_i, y_i$는 주어진 데이터로부터 알아낼 수 있는 값이므로 단 하나뿐인 미지수인 $\alpha$를 알면 $\boldsymbol{w}$를 찾아낼 수 있음
+    - $\boldsymbol{w}$를 구한 뒤, $(y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) -1) = 0$을 통해 $b$를 구할 수 있음
+- 새로운 Instance$(\boldsymbol{x}_{new}$가 들어오면) $y_i(\boldsymbol{w}^T\boldsymbol{x}_{new} + b) -1$에 넣어서 그 값이 0보다 크면 Class Label을 +1로, 값이 0보다 작으면 Class Label을 -1로 예측함
 
 # Soft Margin SVM
 
@@ -215,9 +215,9 @@
 
 ### 목적 함수 및 제약 조건
 
-$min \quad {1 \over 2}||\bold{w}||^2 +C\sum_{i=1}^N \xi_i$
+$min \quad {1 \over 2}||\boldsymbol{w}||^2 +C\sum_{i=1}^N \xi_i$
 
-$s.t. \quad y_i(\bold{w}^T\bold{x}_i + b) \ge 1-\xi_i, \quad \xi_i \ge0, \forall i$
+$s.t. \quad y_i(\boldsymbol{w}^T\boldsymbol{x}_i + b) \ge 1-\xi_i, \quad \xi_i \ge0, \forall i$
 
 ![Untitled](SVM%20aeb6168f959e49e2a6652261fd99d5e4/Untitled%206.png)
 
@@ -227,11 +227,11 @@ $C$: Penalty의 정도를 조절하는 Hyperparameter
 
 $\xi$: Penalty
 
-⇒ 미지수: $\bold{w}, b, \xi$
+⇒ 미지수: $\boldsymbol{w}, b, \xi$
 
 ### 라그랑지안 문제로 변환
 
-${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bold{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \bold{w} }^{ T }{ \bold{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 $s.t.\quad\alpha_i \ge 0$
 
@@ -239,33 +239,33 @@ $s.t.\quad\alpha_i \ge 0$
 
 - 원문제
 
-${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bold{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \bold{w} }^{ T }{ \bold{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \boldsymbol{x} }_{ i }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 
 $s.t.\quad\alpha_i \ge 0$
 
 - KKT 조건
   
-    ${\partial L_p \over {\partial \bold{w}}} = 0 \quad$ ⇒     $\bold{w} = \sum_{i=1}^n\alpha_iy_i\bold{x}_i$
+    ${\partial L_p \over {\partial \boldsymbol{w}}} = 0 \quad$ ⇒     $\boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\boldsymbol{x}_i$
     
     ${\partial L_p \over \partial b} = 0\quad$⇒     $\sum_{i=1}^n\alpha_iy_i = 0$
     
     ${\partial L_p \over \partial \xi_i} = 0\quad$⇒     $C - \alpha_i - \mu_i = 0$
     
 
-⇒ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\bold{x}_i\cdot\bold{x}_j + C\sum_i \xi_i -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\bold{x}_i\cdot\bold{x}_j - b\sum_i\alpha_iy_i + \sum_i\alpha_i - \sum_i\alpha_i\xi_i - \sum_i\mu_i\xi_i$
+⇒ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + C\sum_i \xi_i -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j - b\sum_i\alpha_iy_i + \sum_i\alpha_i - \sum_i\alpha_i\xi_i - \sum_i\mu_i\xi_i$
 
 → $\sum_i(C-\alpha_i-\mu_i)\xi_i = 0$, $\sum_i\alpha_iy_i = 0$
 
-→ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\bold{x}_i\cdot\bold{x}_j -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\bold{x}_i\cdot\bold{x}_j + \sum_i\alpha_i$ 
+→ $L_D = {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j -\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j + \sum_i\alpha_i$ 
 
-→ $L_D = \sum_i\alpha_i  - {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\bold{x}_i\cdot\bold{x}_j$
+→ $L_D = \sum_i\alpha_i  - {1 \over 2}\sum_i\sum_j\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i\cdot\boldsymbol{x}_j$
 
-⇒ $L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\bold{x}_i^T\bold{x}_j$
+⇒ $L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$
 
 - 쌍대 문제
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\bold{x}_i^T\bold{x}_j$
+$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\boldsymbol{x}_i^T\boldsymbol{x}_j$
 
 
 $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
@@ -274,7 +274,7 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
 ### Plus) $\alpha_i$ 값에 따른 Instance 위치
 
-- KKT 조건으로부터 $\alpha_i(y_i(\bold{w}^T\bold{x} + b)-1+\xi_i) = 0$ 수식을 얻을 수 있었음
+- KKT 조건으로부터 $\alpha_i(y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1+\xi_i) = 0$ 수식을 얻을 수 있었음
     - Support Vector에 대해서만 $\alpha_i \ne 0$이 성립
 - 또한 $C - \alpha_i - \mu_i = 0, \mu_i\xi_i = 0$이라는 수식이 성립함
     - **Case 1)** $\alpha_i = 0\quad$⇒ Support Vector가 아닌 Instance
@@ -282,7 +282,7 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
       →  $\mu_i < C$이면 $C - \alpha_i - \mu_i = 0$이 성립하기 위해 $\mu_i > 0$ 이어야 함. 
       → $\mu_i > 0$이라면 $\mu_i\xi_i = 0$이 성립하기 위해 $\xi_i = 0$이어야 함
       
-        → $y_i(\bold{w}^T\bold{x} + b)-1 = 0$인 Instance
+        → $y_i(\boldsymbol{w}^T\boldsymbol{x} + b)-1 = 0$인 Instance
       
         ⇒ Margin 위에 위치하는 Support Vector
       
@@ -331,18 +331,18 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
 ### 고차원에서의 목적 함수 및 제약 조건
 
-$min\quad{1 \over 2}||\bold{w}||^2 + C\sum_{i=1}^N\xi_i$
+$min\quad{1 \over 2}||\boldsymbol{w}||^2 + C\sum_{i=1}^N\xi_i$
 
 
-$s.t\quad y_i(\bold{w}^T\Phi(\bold{x}_i) + b) \ge 1-\xi_i,\quad \xi_i \ge0, \quad\forall i$
+$s.t\quad y_i(\boldsymbol{w}^T\Phi(\boldsymbol{x}_i) + b) \ge 1-\xi_i,\quad \xi_i \ge0, \quad\forall i$
 
 ⇒ **라그랑지안 문제로 변환**
 
-${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bold{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \bold{w} }^{ T }{ \Phi({\bold{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
+${\min{ L_{p}(\boldsymbol{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \boldsymbol{w} \right\|  }^{ 2 } + {C\sum_{i=1}^N\xi_i}-\sum _{ i=1 }^{ N }{ { \alpha  }_{ i }({ y }_{ i }({ \boldsymbol{w} }^{ T }{ \Phi({\boldsymbol{x}_i)} }+b)-1 + \xi_i) } - \sum_{i=1}^N\mu_i\xi_i$
 
 - KKT 조건
   
-    ${\partial L_P \over \partial w} = 0\quad$⇒ $\bold{w} = \sum_{i=1}^n\alpha_iy_i\Phi(\bold{x}_i)$
+    ${\partial L_P \over \partial w} = 0\quad$⇒ $\boldsymbol{w} = \sum_{i=1}^n\alpha_iy_i\Phi(\boldsymbol{x}_i)$
     
     ${\partial L_P \over \partial b} = 0\quad$⇒ $\sum_{i=1}^n\alpha_iy_i = 0$
     
@@ -351,7 +351,7 @@ ${\min{ L_{p}(\bold{w},b,{ \alpha  }_{ i }) }  } =\frac { 1 }{ 2 } { \left\| \bo
 
 ⇒ 쌍대(Dual) 문제로 변환
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\bold{x}_i)^T\Phi(\bold{x}_j)$
+$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$
 
 $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
@@ -359,13 +359,13 @@ $s.t.\quad \sum_{i=1}^N \alpha_iy_i = 0, 0 \le \alpha_i \le C$
 
 👍🏻 Kernel Trick을 쓰자!
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\bold{x}_i)^T\Phi(\bold{x}_j)$
+$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$
 
-⇒  $max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j K(\bold{x}_i, \bold{x}_j)$
+⇒  $max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j K(\boldsymbol{x}_i, \boldsymbol{x}_j)$
 
 ### Kernel Trick
 
-$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\bold{x}_i)^T\Phi(\bold{x}_j)$에서와 같이 고차원에서는 항상 $\Phi({\bold{x}_i})^T\Phi(\bold{x}_j)$와 같이 벡터의 내적 형태로 존재
+$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum_{j=1}^N\alpha_i\alpha_jy_iy_j\Phi(\boldsymbol{x}_i)^T\Phi(\boldsymbol{x}_j)$에서와 같이 고차원에서는 항상 $\Phi({\boldsymbol{x}_i})^T\Phi(\boldsymbol{x}_j)$와 같이 벡터의 내적 형태로 존재
 
 → 저차원 데이터를 입력 받아서 고차원 공간상에 내적 결과값을 줄 수 있다면 굳이 $\Phi$를 찾지 않아도 된다!
 
