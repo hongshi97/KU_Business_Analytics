@@ -1,6 +1,7 @@
 # SVM
 ---
 **Tutorial for Business Analytics**  
+<br/>
 😉 If you are curious about the time it takes to establish an SVM model by kernel function, I tried some experiment. Check [코딩 실습]
 - 본 Tutorial은 고려대학교 산업경영공학부 대학원 Business Analytics 강의 자료를 기반으로 작성되었습니다.
 ---
@@ -661,7 +662,7 @@ sigmoid|	0.5328|	0.5328|	0.5328|	0.5328|	0.1886|
 - 이 경우에도 Polynomial은 모델 수립 소요 시간이 가장 오래 걸렸으나 F1 Score 기준 가장 낮은 성능을 보였음  
 
    
-
+<br/>
 > ####  독립 변수 개수를 증가(1개 -> 100개)시키면서 Kernel Function 별 모델 수립 소요 시간 변화 체크
 ---
 * 해당 실험 진행 이유
