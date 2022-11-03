@@ -658,9 +658,9 @@ sigmoid|	0.5328|	0.5328|	0.5328|	0.5328|	0.1886|
 - 독립 변수 2개, Data Instance 수 5000개인 상황에서 이 데이터셋 역시 예상과 다른 결과를 보였으며, make moon 데이터셋과도 다른 결과를 보였음
 - Make Moon 데이터셋의 경우 [Sigmoid > Polynomial > Linear > RBF] 순서였으나 Gaussian Quantiles 데이터셋의 경우 [Polynomial > Sigmoid > Linear > RBF] 순서
 - Polynomial이 모델 수립 소요 시간이 가장 오래 걸린 것은 예상과 동일하나 RBF가 그 다음으로 오래 걸릴 것이라는 예상과 달리 Make Moon Dataset과 Gaussian Quantiles 데이터셋 역시 RBF는 모델 수립 소요 시간이 가장 짧았으며 F1 Score 기준으로 가장 높은 성능을 보이기까지 함
-- 이 경우에도 Polynomial은 모델 수립 소요 시간이 가장 오래 걸렸으나 F1 Score 기준 가장 낮은 성능을 보였음
+- 이 경우에도 Polynomial은 모델 수립 소요 시간이 가장 오래 걸렸으나 F1 Score 기준 가장 낮은 성능을 보였음  
 
-> 독립 변수 개수를 증가(1개 -> 100개)시키면서 Kernel Function 별 모델 수립 소요 시간 변화 체크
+#### > 독립 변수 개수를 증가(1개 -> 100개)시키면서 Kernel Function 별 모델 수립 소요 시간 변화 체크
 ---
 * 해당 실험 진행 이유
 : Support Vector Regressor 이용 실험 중 "Kernel Function 수식을 보니 독립 변수 개수가 증가하면 모델 수립 소요 시간이 어떻게 변할까"라는 의문을 바탕으로 독립 변수 개수를 [3, 6, 12, 24, 48]로 늘리며 실험을 해보니 Kernel Function 별 모델 수립 소요 시간 순위가 변경되는 현상을 발견함
