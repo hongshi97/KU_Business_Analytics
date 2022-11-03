@@ -1,19 +1,36 @@
 # SVM
+---
+**Tutorial for Business Analytics**  
+😉 If you are curious about the time it takes to establish an SVM model by kernel function, I tried some experiment. Check [코딩 실습]
+- 본 Tutorial은 고려대학교 산업경영공학부 대학원 Business Analytics 강의 자료를 기반으로 작성되었습니다.
+---
 
 ## 목차
 
 1. [이론](#이론)
+   
    1. [Margin](#Margin)
+   
    2. [Optimization](#Optimization-문제)
+   
    3. [Soft Margin SVM](#Soft-Margin-SVM)
+   
    4. [Nonlinear&Kernel](#Nonlinear&Kernel)
+   
 2. [코딩 실습](#코딩-실습)
+   
    1. [실험 주제](#실험-주제)
+   
    2. [Main Experiment - Support Vector Classifier](#Main-Experiment---Support-Vector-Classifier)
-      1. [SVC 결과 해석](#SVC-결과-해석)
+   
+   1. [SVC 결과 및 해석](#SVC-결과-및-해석)
+   
    3. [Additional Experiment - Support Vector Regressor](#Additional-Experiment---Support-Vector-Regressor)
-      1. [SVR 결과 해석](#SVR-결과-해석)
-
+   
+   1. [SVR 결과 및 해석](#SVR-결과-및-해석)
+   
+   4. [결론](#결론)
+   
 ---
 ># **이론**
 
@@ -422,16 +439,331 @@ $$max\quad L_D({\alpha_i}) = \sum_{i=1}^N\alpha_i  - {1 \over 2}\sum_{i=1}^N\sum
 ># **코딩 실습**
 
 ## 실험 주제
+- Support Vector Machine에서 주로 사용되는 Kernel Function인 (Linear), Sigmoid, Poly, RBF **Kernel 별로 SVM 모델 수립에 소요되는 시간**에 유의미한 차이가 존재하는지 확인
+- 해당 주제 선정 배경  
+    1. Stackoverflow, Github 등 소스 코드 공유 사이트에는 Support Vector Machine 관련 실습 코드 중 Kernel, C 등의 하이퍼 파라미터 변경에 따른 모델의 성능 차이를 확인하는 경우는 다수 존재
+    2. Kernel Function 별 모델 수립 시간에 소요되는 시간을 비교한 실험은 매우 드물었음. 
+    3. Kernel Function 수식을 보면 $d$승 계산이 포함되는 Polynomial Kernel Function이 가장 학습에 오래 소요되고 RBF, Sigmoid, Linear이 후순일 것이라 추측되었으나, 이에 대해 실험을 통해 확인하고자 함
+
+- ❗️ Remind  
+    - **Polynomial**
+      
+        $K(x,y) = (x \cdot y + c)^d,\quad c>0$
+        
+    - **Gaussian (RBF)**
+      
+        $K(x,y) = exp(-{||x-y||^2 \over 2\sigma^2}),\quad \sigma \ne 0$
+        
+    - **Sigmoid**
+      
+        $K(x,y) = tanh(a(x\cdot y)+b),\quad a,b\ge0$
+    
+    - Kernel 형태에 따른 분류 경계면  
+      - Linear Kernel: 선형 분류 경계면만 생성 가능
+      - Non-linear Kernel: 복잡한 형태의 분류 경계면 생성 가능
+
+- 실험 내용  
+    1. Support Vector Classifier를 중심으로 Kernel 별 모델 수립 시간 비교  
+    2. 사이킷런 데이터셋에 존재하는 make_moons, make_gaussian_quantiles 을 이용  
+        - make_moons data: Binary Class로 구성되어 있으며 각 Label 별로 Data Instance가 초승달 형태로 분포함
+        ```python
+        # 데이터셋 이해를 위한 Moon datasets 시각화
+        X,y = make_moons(n_samples = 3000, noise = 0.2, random_state = 1002)
+        plt.scatter(X[:,0],X[:,1], marker = "o", c = y, s = 80, edgecolor = 'k', linewidth = 1)
+        plt.xlabel("$X_1$")
+        plt.ylabel("$X_2$")
+        plt.show()
+        ```
+        <p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199547509-7c23f09f-caef-418f-af3b-d8788cac4016.png height = '300'> </p>  
+        
+
+        - make_gaussian_quantiles: Binary Class로 설정했으며 2차원 상에서 각 Label 별로 Data Instance가 등고선 형태로 분포
+        ```python
+        # 데이터셋 이해를 위한 Gaussian Quantile datasets 시각화 
+        # make_gaussian_quantiles()는 독립 변수의 개수를 n_features를 이용해 설정 가능
+        X,y = make_gaussian_quantiles(n_samples = 400, n_features = 2, n_classes = 2, random_state = 42)  # 
+        plt.scatter(X[:,0],X[:,1], marker = 'o', c = y, s = 60, edgecolor = 'k', linewidth = 1)
+        plt.xlabel("$X_1$")
+        plt.ylabel("$X_2$")
+        plt.show()
+        ```
+        <p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199548436-2f62154c-3053-42d1-a33a-adcbccc447c6.png height = '300'></p>
+        
+    3. 2. 실험 과정에서 각 Kernel 별 분류 성능(Accuracy, Recall, Precision, F1-Score) 및 모델 수립에 소요된 시간 측정
+    4. make_gaussian_quantiles 데이터에서 독립 변수의 개수(n_features)를 늘려가며 각 Kernel Function 별 모델 수립에 소요된 시간 측정  
+    (계기: 실험 중 make_gaussian_quantiles()의 n_features에 임의의 숫자를 대입해 학습 시간을 확인하는 과정에서 Kernel Function에 따라 일관된 양상을 보일 것으로 예상했으나 이와 다른 결과를 확인함)
+    5. 추가적으로 SVR에서도 make_regression() 함수를 이용해 n_features를 늘려가며 Kernel Function에 따른 학습 시간 차이가 존재하는지 실험함
+
 
 ## *Main Experiment - Support Vector Classifier*
+```python
+# 코드 실습에 필요한 패키지 및 메소드 Import
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import time
+import warnings
 
-### SVC 결과 해석
+from sklearn.svm import SVC, SVR
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_moons, make_gaussian_quantiles
+from sklearn.metrics import f1_score,precision_score,recall_score,accuracy_score
+from mpl_toolkits.mplot3d import Axes3D
+
+warnings.filterwarnings(action='ignore') 
+```
+- 실험에 사용되는 함수 정의
+```python
+# Classfication 결과 출력 함수
+def metric(model, test_X, test_y):
+    preds = model.predict(test_X) # 수립된 모델의 예측값 (Binary)
+    acc = accuracy_score(test_y,preds) # Accuracy
+    f1 = f1_score(test_y,preds,average='macro') # F1-score
+    precision = precision_score(test_y,preds,average='macro') # Precision
+    recall  = recall_score(test_y,preds,average='macro') # Recall
+    return [acc,precision,recall,f1]
+```
+```python
+# Kernel 변경에 따른 SVM 모델 수립
+def fit_kernel_svm(X,y):
+    # 가장 널리 사용되는 Kernel Function인 Polynomial, RBF, Sigmoid와 일반 Linear SVM을 실험 대상으로 적용
+    kernels = ['linear','poly','rbf','sigmoid'] 
+    kernel_svms = []
+    times = []
+
+    for kernel in kernels:
+        start_time = time.time() # 모델 수립에 소요되는 시간 측정을 위함
+        
+        # 'linear_clf', 'poly_clf'와 같이 각기 다른 커널을 사용한 SVC 모델 객체를 변수로 저장
+        # 아래와 같이 globals()['{}'.format()] 형태를 이용하면 동적 변수 생성 가능
+        globals()['{}_clf'.format(kernel)] = SVC(kernel = kernel).fit(X,y) 
+        times.append(time.time()-start_time)
+        kernel_svms.append(globals()['{}_clf'.format(kernel)]) # 각 Kernel Function 별 수립된 SVC 모델을 리스트에 저장
+    
+    return kernel_svms,times, kernels
+```
+```python
+# Support Vector Classifier 시각화 함수
+def svc_plot(X,y, svm_model):
+    assert X.shape[1] == 2, "input X's Num of Feature should be 2" # 2차원 시각화를 위해 Input X의 변수 개수가 2개인 경우만 허용
+    plt.title(f'{svm_model} Scatter Plot')
+    plt.scatter(X[:,0],X[:,1], marker = 'o', c = y, cmap = plt.cm.Paired, edgecolors= 'k') # Data Instance 시각화
+
+    # 초평면 시각화
+    ax = plt.gca()    
+    xlim, ylim = ax.get_xlim(), ax.get_ylim()
+    xx = np.linspace(xlim[0],xlim[1], 10)
+    yy = np.linspace(ylim[0],ylim[1], 10)
+    XX, YY = np.meshgrid(xx, yy)
+
+    xy = np.vstack([XX.ravel(), YY.ravel()]).T
+    z = svm_model.decision_function(xy).reshape(XX.shape) # 분류 경계면 (Hyperplane)
+    ax.contour(XX, YY, z, colors = ['k','r','k'], levels = [-1, 0, 1], alpha = 0.6, linestyles = ['--','-','--'])
+    
+    return plt.show()
+```
+
+```python
+# 각 Kernel SVC의 결과(데이터 프레임 및 그래프)를 보여주는 함수
+def show_kernel_svc_result(X, y):
+    train_X, test_X, train_y, test_y = train_test_split(X, y, shuffle = True, test_size = 0.25)
+    # 각 Kernel 별 SVC 모델 수립 + 각 Kernel 별 SVC 수립된 모델(kernel_svms)과 모델 수립에 소요된 시간(times), Kernel들의 명칭(kernels) 저장
+    kernel_svms, times, kernels = fit_kernel_svm(train_X, train_y) 
+    k_svms, acc, precision, recall, f1 = [], [], [], [], [] # Kernel 별 성능을 DataFrame 형태로 보여주기 위해 빈 리스트 생성
+
+    for i, k_s in enumerate(kernel_svms):
+        k_svms.append(kernels[i]) # kernels[i] 예시: 'linear' (str)
+        acc.append(metric(k_s,test_X,test_y)[0]) # Classifier의 Accuracy 
+        precision.append(metric(k_s,test_X,test_y)[1]) # Classifier의 Precision
+        recall.append(metric(k_s,test_X,test_y)[2]) # Classifier의 Recall
+        f1.append(metric(k_s,test_X,test_y)[3]) # Classifier의 F1 score
+
+    # 각 커널별 SVC의 분류 성능 및 모델 수립에 소요된 시간을 데이터 프레임 형태로 저장
+    k_svm_result = pd.DataFrame({'Kernel':k_svms, 'Accuracy':acc, 'Precision':precision, 'Recall':recall, 'F1 Score':f1, 'Time for Train(s)': times})
+    k_svm_result.iloc[:,1:] = k_svm_result.iloc[:,1:].apply(lambda x:np.round(x,4)) # Accuracy, Precision, Recall, F1-score, Time for Train을 소수점 넷째자리에서 반올림 (꼭 필요한 과정은 아님)
+    
+    # Kernel 별 F1 Score 및 모델 수립 소요 시간 시각화
+    fig, axes = plt.subplots(ncols = 2)
+    fig.set_size_inches((8,5))
+    fig.subplots_adjust(wspace = 0.3)
+
+    axes[0].plot(k_svm_result['Kernel'], k_svm_result['F1 Score'], marker = 'o', color = 'blue')
+    axes[0].set_title('F1 Score')
+    axes[1].plot(k_svm_result['Kernel'], k_svm_result['Time for Train(s)'], marker = 'o', color = 'red')
+    axes[1].set_title('Time for Train(s)')
+
+    display(k_svm_result)
+    plt.show()
+```
+- 위 사용자 정의 함수 코드 결과 예시
+```python
+# moon dataset 적용 예시
+kernel_svms, times, kernels = fit_kernel_svm(X, y)
+
+for k_s in kernel_svms:
+    svc_plot(X,y,k_s)
+```
+
+<center class="half">
+    <img src = "https://user-images.githubusercontent.com/56019094/199554240-0b8cd1e1-691e-46f0-bcfc-71ed7f774a9b.png" width = 400>
+    <img src = "https://user-images.githubusercontent.com/56019094/199554255-46b85b76-916c-4516-b906-b992cfbefa2d.png" width = 400>
+<figure>
+
+<figure class="half">
+    <img src = https://user-images.githubusercontent.com/56019094/199554282-46458a8e-21fd-474e-8e57-868cd0c560d6.png width = 400>
+    <img src = https://user-images.githubusercontent.com/56019094/199554294-f908ba20-d081-48b3-90cf-0b981075ecc3.png width = 400>
+</center>
 
 
+### SVC 결과 및 해석
+```python
+# Moon Dataset 적용 결과 확인
+X, y = make_moons(n_samples = 5000, noise = 0.2, random_state = 1002)
+show_kernel_svc_result(X,y)
+```	
+<center>
+
+|Kernel|Accuracy|Precision|Recall|F1 Score|Time for Train(s)|
+|------|--------|---------|------|--------|-----------------|
+linear|	0.8728	| 0.8728| 	0.8728|	0.8728|	0.0556|
+poly |	0.9008	| 0.9084| 	0.8998|	0.9002|	0.0584|
+rbf	| 0.9752	| 0.9752| 	0.9752|	0.9752|	0.0204|
+sigmoid	| 0.6184 |	0.6183| 0.6183|	0.6183|	0.0935|
+
+</center>
+
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199560207-277305dc-d1d7-4a7b-8151-3a084a76a2cf.png height = 300></p>
+
+- 독립 변수 2개, Data Instance 수 5000개인 상황에서는 기존 예상과 달리 모델 수립에 소요된 시간이 Sigmoid > Polynomial > Linear > RBF 순으로 결과가 나왔음  
+- RBF의 경우 모델 수립에 가장 적은 시간이 소요되었음에도 불구하고 F1 Score 기준으로 가장 높은 성능(약 0.98)을 보이며 "Kernel SVM을 적용할거라면 RBF를 우선 적용해보라"는 기존 관행을 뒷받침함
+- Polynomial의 경우 모델 수립에 가장 많은 시간(RBF의 네 배 이상)이 소요되었음에도 불구하고 F1 Score 기준 가장 낮은 성능을 보였음
+
+```python
+# Gaussian Quantiles 데이터셋 적용 결과 확인
+X, y = make_gaussian_quantiles(n_samples = 5000, n_features = 2, n_classes = 2, random_state = 42)
+show_kernel_svc_result(X,y)
+```
+<center>
+
+|Kernel|Accuracy|Precision|Recall|F1 Score|Time for Train(s)|
+|------|--------|---------|------|--------|-----------------|
+|linear|	0.5872|	0.6277|	0.5872|	0.5516|	0.1590|
+|poly	|0.5144|	0.7537|	0.5144|	0.3646|	0.3005|
+rbf|	0.9960	|0.9960|	0.9960|	0.9960|	0.0209|
+sigmoid|	0.5328|	0.5328|	0.5328|	0.5328|	0.1886|
+
+</center>
+
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199562004-620c57e1-8129-4cf0-8820-07d4d5e55579.png height = 300></p>
+- 독립 변수 2개, Data Instance 수 5000개인 상황에서 이 데이터셋 역시 예상과 다른 결과를 보였으며, make moon 데이터셋과도 다른 결과를 보였음
+- Make Moon 데이터셋의 경우 [Sigmoid > Polynomial > Linear > RBF] 순서였으나 Gaussian Quantiles 데이터셋의 경우 [Polynomial > Sigmoid > Linear > RBF] 순서
+- Polynomial이 모델 수립 소요 시간이 가장 오래 걸린 것은 예상과 동일하나 RBF가 그 다음으로 오래 걸릴 것이라는 예상과 달리 Make Moon Dataset과 Gaussian Quantiles 데이터셋 역시 RBF는 모델 수립 소요 시간이 가장 짧았으며 F1 Score 기준으로 가장 높은 성능을 보이기까지 함
+- 이 경우에도 Polynomial은 모델 수립 소요 시간이 가장 오래 걸렸으나 F1 Score 기준 가장 낮은 성능을 보였음
+
+> 독립 변수 개수를 증가(1개 -> 100개)시키면서 Kernel Function 별 모델 수립 소요 시간 변화 체크
+---
+* 해당 실험 진행 이유
+: Support Vector Regressor 이용 실험 중 "Kernel Function 수식을 보니 독립 변수 개수가 증가하면 모델 수립 소요 시간이 어떻게 변할까"라는 의문을 바탕으로 독립 변수 개수를 [3, 6, 12, 24, 48]로 늘리며 실험을 해보니 Kernel Function 별 모델 수립 소요 시간 순위가 변경되는 현상을 발견함
+
+<center>
+
+독립 변수 3개
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199635510-dd217d8f-2c8b-4578-b02d-39e7b419f382.png height = 250 ></p>
+
+독립 변수 6개
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199635778-db4773a0-4bef-4675-9d5c-0298216a63ed.png height = 250></p>
+
+독립 변수 12개
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199635813-d348bd25-e594-464f-a6e0-3a812e9a9cda.png height = 250></p>
+
+독립 변수 24개
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199635853-2ee21a27-afb0-4cbd-b80d-cf1122fe8822.png height = 250> </p>
+
+독립 변수 48개
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199635894-597e423c-dadd-427d-a76e-009fc731915f.png height = 250></p>
+
+</center>
+
+---
+- 해당 실험에서 사용된 코드는 이전에 사용되었던 코드를 기반으로 약간의 변형만 적용되어서 Tutorial 내용에는 포함하지 않음 (ipynb 파일 참고)
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199563451-993a7962-a18c-4d33-8de9-bb21d2834e45.png></p>
+
+
+
+- 독립 변수 개수를 1개에서 100개까지 증가시키면서, 각 Kernel Function 별 독립 변수 개수 별로 모델 수립 소요 시간이 **최장 시간**이 걸렸던 경우 Count
+
+<center>
+
+|Sigmoid|RBF|Polynomial|Linear|
+|-------|---|----------|------|
+|39|29|17|15|
+
+</center>
+
+
+
+- 독립 변수 개수를 1개에서 100개까지 증가시키면서, 각 Kernel Function 별 독립 변수 개수 별로 모델 수립 소요 시간이 **최단 시간**이 걸렸던 경우 Count
+
+<center>
+
+|Polynomial|Linear|RBF|Sigmoid|
+|-------|---|----------|------|
+|35|33|20|12|
+
+</center>
+
+
+
+- 독립 변수 개수를 증가시킨다는 새로운 상황에서 Kernel Function 별 모델 학습에 소요되는 시간이 어떻게 변화하는지 확인하기 위해 실험함
+- 수식에 $degree$ 승이 포함되는 Polynomial의 경우 지수적으로 증가할 것이라 예상했으나 독립 변수가 100개까지 증가하는 상황에서도 모든 Kernel Function이 선형적으로 증가함을 확인할 수 있었음.
+- 네 가지 Kernel Functio의 경우 모두 독립 변수의 개수가 증가함에 따라 모델 수립 소요 시간의 분산이 커지는 것으로 확인됨
+- 내적 연산이 수식에 포함되는 Polynomial과 Sigmoid의 경우 모델 수립 소요 시간이 유사할 것이라 생각했으나, 각각 가장 많이 최단 시간을 기록한 커널과 가장 많이 최장 시간을 기록한 커널이었음
+- Sigmoid의 수식에는 $tanh$가 포함되고, Polynomial의 경우 $degree$승이 포함되어, 이 둘을 수식만 보았을 때에는 Polynomial이 더 오랜 시간이 걸릴 것이라 판단했으나 상반된 결과가 나와서 흥미로웠음. 이러한 결과가 나온 이유에 대해서는 데이터셋 변경을 통한 추가 실험 및 시간 복잡도에 대한 개념을 추가적으로 공부해야 이해할 수 있을 것으로 판단됨.
 
 ## *Additional Experiment - Support Vector Regressor*
+- 해당 실험에서 사용된 코드는 이전에 사용되었던 SVC 코드를 기반으로 약간의 변형(SVC -> SVR 등)만 적용되어서 Tutorial 내용에는 포함하지 않음 (ipynb 파일 참고)
+- 데이터셋 생성에는 사이킷런의 make_regression 메소드를 사용했음 (n_features를 통해 독립 변수 개수를 자유롭게 조정 가능함)
+- SVC의 마지막 실험과 동일하게 독립 변수 개수를 1개부터 100개까지 증가시키면서 Kernel Function(Linear, Polynomial, RBF, Sigmoid) 별 모델 수립 소요 시간 변화 실험
 
-### SVR 결과 해석
+### SVR 결과 및 해석
+<p align = 'center'><img src = https://user-images.githubusercontent.com/56019094/199567437-870bbdf6-564a-485b-a6b0-6ec7d33a6e98.png></p>
+
+- 독립 변수 개수를 1개에서 100개까지 증가시키면서, 각 Kernel Function 별 독립 변수 개수 별로 모델 수립 소요 시간이 **최장 시간**이 걸렸던 경우 Count
+
+<center>
+
+|Sigmoid|Linear|Polynomial|RBF|
+|-------|---|----------|------|
+|34|31|19|16|
+
+</center>
 
 
+- 독립 변수 개수를 1개에서 100개까지 증가시키면서, 각 Kernel Function 별 독립 변수 개수 별로 모델 수립 소요 시간이 **최단 시간**이 걸렸던 경우 Count
 
+
+<center>
+
+|Polynomial|RBF|Linear|Sigmoid|
+|-------|---|----------|------|
+|32|27|23|18|
+
+</center>
+
+- 독립 변수의 개수가 증가함에 따라 각 Kernel Function 별 모델 수립 소요 시간의 분산이 커지는 것은 SVC와 동일하나 분산의 크기가 더 큼
+- 첫 번째 표를 보면, SVC의 결과와 동일하게 Sigmoid가 가장 많이 최장 모델 수립 소요 시간을 기록했음
+- 두 번째 표를 보면, SVC의 결과와 동일하게 Polynomial이 가장 많이 최단 모델 수립 소요 시간을 기록했음
+
+## 결론
+- 실험 전 예상: [Linear < Sigmoid < RBF < Polynomial] 순으로 모델 수립에 많은 시간이 소요될 것
+- SVC 결과(최단 시간 결과 표 기반): [Polynomial < Linear < RBF< Sigmoid]
+- SVR 결과(최단 시간 결과 표 기반): [Polynomai < RBF < Linear < Sigmoid]
+- 기존 예상과 반대로 Polynomial이 모델 학습에 가장 적은 시간이 소요되었으며 Sigmoid가 가장 많은 시간이 소요되었음
+- 그러나 모델 성능을 고려했을 때에는 SVC와 SVR 모두 RBF가 대부분 가장 우수한 성능을 보였음 (SVR의 경우 해당 실험 파트는 코드에 포함되어 있지 않음)
+- Polynomial Kernel SVM이 모델 학습 소요 시간 측면에서는 장점이 있으나 성능을 고려했을 때에는 다른 Kernel Function에 비해 성능이 낮음
+- 여러 가지 Kernel Function을 수립해보기에 시간이 부족한 경우에는 RBF Kernel SVM을 우선적으로 시도해보는 것이 합리적 (사이킷런 SVM의 Kernel Default가 RBF인 이유도 이러한 배경이 있었을 것이라 유추됨)
+- 최종 결론: **Kernel 별로 SVM 모델 수립에 소요되는 시간** 차이가 존재하는 것으로 판단. Polynomial의 가장 적은 시간이 소요되었고, Sigmoid가 가장 많은 시간이 소요되었음
+
+- 한계점
+    - SVC의 경우 두 가지 데이터셋(독립 변수 개수를 증가시키면서 모델 수립 소요 시간을 확인한 실험에서는 한 가지 데이터셋만 사용), SVR의 경우 한 가지 데이터셋만을 사용하여 실험함
+    - Kernel Function 별 수식과 실험 결과와의 연관성을 정확하게 해석해내지 못했음
