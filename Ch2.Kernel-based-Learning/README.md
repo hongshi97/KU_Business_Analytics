@@ -1,6 +1,6 @@
 # SVM
 ---
-**Tutorial for Business Analytics**  
+**Tutorial for SVM in python**  
 <br/>
 😉 If you are curious about the time it takes to establish an SVM model by kernel function, I tried some experiment. Check [코딩 실습]
 - 본 Tutorial은 고려대학교 산업경영공학부 대학원 Business Analytics 강의 자료를 기반으로 작성되었습니다.
