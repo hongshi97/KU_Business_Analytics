@@ -38,7 +38,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
 
 
 <p align = 'center'>
-<img src ="https://user-images.githubusercontent.com/56019094/201925033-192ab0cb-32d2-4dab-8798-25316e984643.png">
+<img src ="https://user-images.githubusercontent.com/56019094/201925033-192ab0cb-32d2-4dab-8798-25316e984643.png" width = 70%>
 </p>
 
 위와 같이 Anomaly Detection에서는 양품 즉, 정상의 범주를 어느 정도로 정하느냐에 따라 모델의 예측 결과가 달라지게 됩니다. 이와 관련된 개념으로 **일반화(Generalization)**와 **특수화(Specialization)**이라는 개념이 존재합니다.
@@ -47,7 +47,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
 - 특수화: 주어진 데이터로부터 정상 범주의 개념을 좁혀가는 것 -> 특수화에 치중할 경우 과적합의 위험 (빈번한 False Alarm)에 빠질 수 있음
 
     <p align = 'center'>
-    <img src = "https://user-images.githubusercontent.com/56019094/201925558-e50ce14f-dd40-4e22-8f47-4cdf8a3a38eb.png">
+    <img src = "https://user-images.githubusercontent.com/56019094/201925558-e50ce14f-dd40-4e22-8f47-4cdf8a3a38eb.png" width = 70%>
     </p>
 
 1. 만약 일반화의 정도가 심해 정상 범주의 개념을 너무 넓게 잡게 되면 정상(사과)이 아닌 "수박"도 정상(사과)라고 판단하게 됩니다. 
@@ -55,7 +55,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
 
 다시 Q4로 돌아가서 Anomaly Detection과 Classification에 대해 살펴보자면 다음과 같은 그림을 통해 쉽게 이해할 수 있을 것입니다.
 <p align = 'center'>
-<img src = "https://user-images.githubusercontent.com/56019094/201926047-f15dfd88-65fb-45ec-8bcb-93e24712fd52.png">
+<img src = "https://user-images.githubusercontent.com/56019094/201926047-f15dfd88-65fb-45ec-8bcb-93e24712fd52.png" width = 70%>
 </p>
 위 그림과 같이 Classification의 경우 Training Data에 정상(X+)인 데이터와 비정상(X-)인 데이터가 같이 사용됩니다. 반면, Anomaly Detection이 사용되는 경우에는 이미 비정상 데이터보다 정상 데이터가 매우 많은 상황이기에 Training에는 정상 데이터만 사용합니다. 이를 통해, 정상 데이터들만의 패턴을 학습해서 새로운 데이터가 들어오면 자신이 학습했던 패턴과 유사한지 아닌지를 판별해 정상/비정상 여부를 판단하게 됩니다.
 
@@ -64,8 +64,8 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
 - 새로운 데이터가 생성될 확률이 낮을 경우 이상치로 판단!
 
 <p align = 'center'>
-<img src = "https://user-images.githubusercontent.com/56019094/201927283-a27d0c13-588b-4a98-861e-63a262f4d871.png" width = 90%>
-<img src = "https://user-images.githubusercontent.com/56019094/201927462-7f6ea9ba-f3b9-4a46-8b35-ee2a3269ce48.png" width = 90%>
+<img src = "https://user-images.githubusercontent.com/56019094/201927283-a27d0c13-588b-4a98-861e-63a262f4d871.png" width = 70%>
+<img src = "https://user-images.githubusercontent.com/56019094/201927462-7f6ea9ba-f3b9-4a46-8b35-ee2a3269ce48.png" width = 70%>
 </p>
 
 - Gaussian Density-based Anomaly Detection
@@ -76,7 +76,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
     - 장점 2. 적절한 기준치(Cut-off)를 분포로부터 정할 수 있음
     - 장점 3. 각 변수의 측정 단위에 영향을 받지 않음   
     <p align = 'center'>
-    <img src = "https://user-images.githubusercontent.com/56019094/201928001-632bdf9f-7f87-42c3-b8e4-0e78189feb14.png">
+    <img src = "https://user-images.githubusercontent.com/56019094/201928001-632bdf9f-7f87-42c3-b8e4-0e78189feb14.png" width = 70%>
     </p>
 
 <br/>  
@@ -85,7 +85,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
     - 데이터는 여러 개의 가우시안 분포의 혼합으로 이루어져 있음을 허용
     - 아래 가우시안 분포(빨간색 함수 제외한 것)들의 선형 결합으로 전체 데이터의 분포를 표현
     <p align = 'center'>
-    <img src = 'https://user-images.githubusercontent.com/56019094/201928561-e7f3bffc-7f34-4b6f-91e8-4f0888391de2.png' width = 80%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/201928561-e7f3bffc-7f34-4b6f-91e8-4f0888391de2.png' width = 70%>
     </p>
 
     - 일반 Gaussian Density Estimation에서는 모든 데이터가 하나의 가우시안 분포로부터 생성되었다고 가정하기에 평균과 공분산이라는 단 두 개의 미지수만 구하면 됐습니다.
@@ -111,12 +111,12 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
         - k개의 객체를 포함하는 영역 x를 (무게) 중심으로 하며, 각 면의 길이가 h인 Hypercube로 정의: Hypercube의 볼륨 V는 $h^d$로 정의됨(d = 차원 수) -> V = $h^d$
         - Kernel Function을 다음과 같이 정의
         <p align = 'center'>
-        <img src = "https://user-images.githubusercontent.com/56019094/201930589-1a674945-c736-42a8-a8da-d4eeaa289e63.png" width = 80%>
+        <img src = "https://user-images.githubusercontent.com/56019094/201930589-1a674945-c736-42a8-a8da-d4eeaa289e63.png" width = 40%>
         </p>
 
         - 예시
         <p align = 'center'>
-        <img src = "https://user-images.githubusercontent.com/56019094/201930784-5197dfc1-7974-4943-9f7f-51e9751a3a66.png" width = 60%>
+        <img src = "https://user-images.githubusercontent.com/56019094/201930784-5197dfc1-7974-4943-9f7f-51e9751a3a66.png" width = 40%>
         </p>
 
         - 기존 Kernel Function은 불연속적임. 즉, Hypercube내에 있는 객체들에 대해서는 모두 동일한 가중치를 적용한다.  
@@ -129,7 +129,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
             - (남색, 0.3)h가 크면 Density Distribution이 과도하게 Smoothing됨
             - (주황색, 0.05)h가 작으면 Density Distribution의 형태가 Spiky해짐
             <p align = 'center'>
-            <img src = "https://user-images.githubusercontent.com/56019094/201943177-66390a06-efb8-4241-8be7-f63faf8d986c.png">
+            <img src = "https://user-images.githubusercontent.com/56019094/201943177-66390a06-efb8-4241-8be7-f63faf8d986c.png" width = 70%>
             </p>
             <p align = 'center'>
             이미지 출처: https://en.wikipedia.org/wiki/Kernel_density_estimation
@@ -177,7 +177,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
     
     - LOF의 최종 결과물은 각 개체들의 주변 밀도를 고려한 이상치 스코어
     <p align = 'center'>
-    <img src = "https://user-images.githubusercontent.com/56019094/201946474-cf3595ce-ce96-4cf8-9633-f79b92746267.png" width = 85%>
+    <img src = "https://user-images.githubusercontent.com/56019094/201946474-cf3595ce-ce96-4cf8-9633-f79b92746267.png" width = 80%>
     </p>
 
     <p align = 'center'>
@@ -241,7 +241,7 @@ A.  Anomaly Detection은 일종의 Classification이라고 볼 수 있습니다.
     - DIfferent: 이상치 데이터는 정상 데이터와는 특징이 다름
 
     <p align = 'center'>
-    <img src = "https://user-images.githubusercontent.com/56019094/201949696-6c04da67-2546-474e-abaf-2ced6beeeb05.png" width = 85%>
+    <img src = "https://user-images.githubusercontent.com/56019094/201949696-6c04da67-2546-474e-abaf-2ced6beeeb05.png" width = 70%>
     </p>
 
     <p align = 'center'>
