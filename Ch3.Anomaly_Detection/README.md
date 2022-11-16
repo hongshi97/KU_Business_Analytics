@@ -829,16 +829,16 @@ new_test_y = [0]*920 + [1]*80
 
 한글 텍스트 이미지
 <figure class = 'third'>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202094970-ee9046d2-0253-4fcd-8b31-a0eae7da933c.png' width = 32%>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202094994-77fa8367-5853-47ba-b38a-949ea187e2ae.png' width = 32%>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202095022-d7a5b8fb-f1c1-43f3-b18c-6a1e8279b6cc.png' width = 32%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202094970-ee9046d2-0253-4fcd-8b31-a0eae7da933c.png' width = 30%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202094994-77fa8367-5853-47ba-b38a-949ea187e2ae.png' width = 30%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202095022-d7a5b8fb-f1c1-43f3-b18c-6a1e8279b6cc.png' width = 30%>
 </figure>
 
 영어 텍스트 이미지
 <figure class = 'third'>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202095550-dd4f1366-da95-4a6f-8173-8e8048541b95.png' width = 32%>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202095570-e01a89d1-090c-497e-a8b5-b2a3d556a574.png' width = 32%>
-    <img src = 'https://user-images.githubusercontent.com/56019094/202095584-18e04eaa-b1e5-45af-b60f-4958ad410b65.png' width = 32%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202095550-dd4f1366-da95-4a6f-8173-8e8048541b95.png' width = 30%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202095570-e01a89d1-090c-497e-a8b5-b2a3d556a574.png' width = 30%>
+    <img src = 'https://user-images.githubusercontent.com/56019094/202095584-18e04eaa-b1e5-45af-b60f-4958ad410b65.png' width = 30%>
 </figure>
 
 저희가 수립한 AutoEncoder는 모델 수립 시에 0~9 숫자(Normal) 이미지만을 학습했기 때문에 위와 같은 숫자가 아닌(Not Normal 즉, Anomaly) 데이터를 Input으로 받으면 제대로 복원 해내지 못할 것입니다. 따라서 Reconstruction Loss로 사용할 MSE Loss가 높을 것이며, 이 MSE Loss가 특정 Threshold보다 높을 경우 Anomaly(1)로, Threshold보다 낮다면 Normal(0)으로 판단하게 될 것입니다.  
